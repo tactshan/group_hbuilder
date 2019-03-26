@@ -152,11 +152,12 @@
 								url:'goodslist.html',
 								extras:{   
 									token:data.token,
-									uid:data.uid, 
-								}  
+									uid:data.uid 
+								},
+							})
 						}else{  
 								mui.alert(data.msg,'提示信息','关闭');
-						}        
+						}           
 					},  
 					error:function(xhr,type,errorThrown){
 						//异常处理；
