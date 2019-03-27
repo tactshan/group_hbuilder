@@ -102,7 +102,7 @@
 				timeout:10000,//超时时间设置为10秒；
 				success:function(msg){
 					alert(msg.msg)
-					if(data.code==1){
+					if(msg.code==1){
 						var url='./orderlist.html?uid='+uid+'&token='+token	
 						location.href=url;
 					}
