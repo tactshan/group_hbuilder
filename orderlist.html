@@ -45,14 +45,15 @@
 				
 				$("#uid").val(uid)
 				$("#token").val(token)
-				var _tr=''
-				$.ajax({
-					url:"http://group_shop.tactshan.com/orderlist",
-					data:{token:token,uid:uid},
-					method:'POST',
-					dataType:'json',
-					success:function(msg){
-						alert(msg.code);    
+				alert(_url);
+// 				var _tr=''
+// 				$.ajax({
+// 					url:"http://group_shop.tactshan.com/orderlist",
+// 					data:{token:token,uid:uid},
+// 					method:'POST',
+// 					dataType:'json',
+// 					success:function(msg){
+// 						alert(msg.code);    
 // 						$.each(msg.data,function(i,value){
 // 							_tr+="<tr>"+
 // 									"<td>"+value.order_num+"</td>"+
@@ -64,8 +65,8 @@
 // 						})
 						
 						//$('#box').html(_tr)
-					},
-				})				
+					//},
+				//})				
 				})
 		</script>
 </html>
