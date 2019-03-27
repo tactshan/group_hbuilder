@@ -24,7 +24,7 @@
 			</tr>
 			<tr>
 				<td>购买数量：</td>
-				<td id=""></td>
+				<td id="buy_num"></td>
 			</tr>
 			<tr>
 				<td>总额</td>
@@ -40,4 +40,21 @@
 <script src="js/mui.js"></script>
 	<script type="text/javascript">
 		mui.init()
+		$(function(){
+			mui.ajax('http://group_shop.tactshan.com/group_shop/goods_detail',{
+				data:{
+					order_num : order_num,
+					uid : uid,
+					token : token 
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				success:function(data){
+					$("#order_num").html(data.order_num)
+					$("#goods_name").html(data.goods_name)
+					$("#buy_num").html(data.buy_num)
+					$("#total_amont").html(data.total_amont)
+				}
+			});
+		})
 	</script>
