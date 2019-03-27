@@ -1,7 +1,7 @@
 {
     "@platforms" : [ "android", "iPhone", "iPad" ],
-    "id" : "H5809FD7E", /*必选，应用的标识*/
-    "name" : "group_hbuilder", /*必选，应用名称*/
+    "id" : "H58339090", /*必选，应用的标识*/
+    "name" : "six_group", /*必选，应用名称*/
     "version" : {
         "name" : "1.0", /*必选，版本名称*/
         "code" : ""

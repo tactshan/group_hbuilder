@@ -47,25 +47,33 @@
 			
 				var _tr=''
 				$.ajax({
-					url:"http://group_shop.tactshan.com/orderlist",
+					url:"http://group_shop.tactshan.com/orderlist", 
 					data:{token:token,uid:uid},
 					method:'POST',
 					dataType:'json',
 					success:function(msg){
-						alert(msg.msg);    
-// 						$.each(msg.data,function(i,value){
-// 							_tr+="<tr>"+
-// 									"<td>"+value.order_num+"</td>"+
-// 									"<td>"+value.total_amount+"</td>"+
-// 									"<td>"+value.c_time+"</td>"+
-// 									"<td>"+value.order_status+"</td>"+
-// 									"<td>"+"<input type='button' value='订单详情' class='' >"+"</td>"
-// 								"</tr>";
-// 						})
+					  
+						$.each(msg.data,function(i,value){
+							_tr+="<tr>"+
+									"<td>"+value.order_num+"</td>"+
+									"<td>"+value.total_amont+"</td>"+
+									"<td>"+value.c_time+"</td>"+
+									"<td>"+value.order_status+"</td>"+
+									"<td>"+"<input type='button' value='订单详情' class='orderdetail'  >"+"</td>"
+								"</tr>";
+						})
 // 						
-// 						 $('#box').html(_tr)
+ 						 $('#box').html(_tr)
 				}			
 				})
 				})
+				$(document).on('click','.orderdetail',function(){
+					
+					var uid=$("#uid").val();
+		 			var token=$("#token").val();
+					var url='orderdetail.html?uid='+uid+'&token='+token
+					location.href=url;	 
+				})		
+				
 		</script>
 </html>
