@@ -37,7 +37,7 @@
 			</tr>
 			<tr>
 				<td></td>
-				<td><button onclick="addCart()">加入购物车</button></td>
+				<td><button onclick="addCart()" id="addcart">加入购物车</button></td>
 			</tr>
 		</table>
 	</body>
@@ -93,15 +93,14 @@
 				goods_price:goods_price,
 				buy_num : buy_num,
 				total_price:total_price
-				
 			},
 			dataType:'json',//服务器返回json格式数据
 			type:'post',//HTTP请求类型
 			timeout:10000,//超时时间设置为10秒；
 			success:function(data){
-				alert(data.msg)
-				if(data.msg=="添加成功"){
-					location.href="./cart.html"
+				if(data.error==0){
+					var url='./detail.html?goods_id='+goods_id+'&uid='+uid+'&token='+token
+					location.href=url;	
 				}
 			}
 		});
