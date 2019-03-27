@@ -97,10 +97,12 @@
 					})
 		})
 			$(document).on('click','.username',function(){
-
+				var uid=$('#uid').val();
+		 		var token=$('#token').val();
+				
 				var _this=$(this);
 				var goods_id=_this.attr('goods_id');
-				var url='./detail.html?goods_id='+goods_id
+				var url='./detail.html?goods_id='+goods_id+'&uid='+uid+'&token='+token  
 				location.href=url;	
 			})					
 
