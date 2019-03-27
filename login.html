@@ -85,7 +85,7 @@
 				background-color: #ddd;
 			}
 		</style>
-
+		
 	</head>
 
 	<body>
@@ -103,7 +103,7 @@
 					<label>密码</label>
 					<input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
 				</div>
-			</form>
+			</form> 
 			
 			<div class="mui-content-padded">
 				<button id='login' class="mui-btn mui-btn-block mui-btn-primary">登录</button>
@@ -113,6 +113,7 @@
 			<div class="mui-content-padded oauth-area">
 
 			</div>
+			<input type="button" id="order" value="订单">
 		</div>
 		<script src="js/mui.min.js"></script>
 		<script src="js/jquery-3.2.1.min.js"></script>
@@ -123,6 +124,12 @@
 					mui('body').on('tap','#reg',function(){
 						var webview=mui.openWindow({
 							url:'reg.html',
+								
+						});   
+					})
+					mui('body').on('tap','#order',function(){
+						var webview=mui.openWindow({
+							url:'orderlist.html',
 								
 						});   
 					})
