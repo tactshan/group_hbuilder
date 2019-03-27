@@ -27,6 +27,10 @@
 				<td id="buy_num"></td>
 			</tr>
 			<tr>
+				<td>商品单价：</td>
+				<td id="goods_price"></td>
+			</tr>
+			<tr>
 				<td>总额</td>
 				<td id="total_amont"></td>
 			</tr>
@@ -41,7 +45,14 @@
 	<script type="text/javascript">
 		mui.init()
 		$(function(){
-			mui.ajax('http://group_shop.tactshan.com/group_shop/goods_detail',{
+			_url=window.location.href  
+			var uid_place=_url.lastIndexOf("uid=");
+			var uid_last_place=_url.lastIndexOf("&t")
+			var uid=_url.substring(uid_place+4,uid_last_place)
+			var token_place=_url.lastIndexOf("n=")
+			var token=_url.substring(token_place+2,_url.length)	
+			
+			mui.ajax('http://www.group_shop.com/order_detail',{
 				data:{
 					order_num : order_num,
 					uid : uid,
@@ -53,6 +64,7 @@
 					$("#order_num").html(data.order_num)
 					$("#goods_name").html(data.goods_name)
 					$("#buy_num").html(data.buy_num)
+					$("#goods_price").html(data.goods_price)
 					$("#total_amont").html(data.total_amont)
 				}
 			});
