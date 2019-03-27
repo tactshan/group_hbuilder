@@ -52,18 +52,18 @@
 					method:'POST',
 					dataType:'json',
 					success:function(msg){
-						alert(msg.msg);    
-// 						$.each(msg.data,function(i,value){
-// 							_tr+="<tr>"+
-// 									"<td>"+value.order_num+"</td>"+
-// 									"<td>"+value.total_amount+"</td>"+
-// 									"<td>"+value.c_time+"</td>"+
-// 									"<td>"+value.order_status+"</td>"+
-// 									"<td>"+"<input type='button' value='订单详情' class='' >"+"</td>"
-// 								"</tr>";
-// 						})
+					  
+						$.each(msg.data,function(i,value){
+							_tr+="<tr>"+
+									"<td>"+value.order_num+"</td>"+
+									"<td>"+value.total_amont+"</td>"+
+									"<td>"+value.c_time+"</td>"+
+									"<td>"+value.order_status+"</td>"+
+									"<td>"+"<input type='button' value='订单详情' class='' >"+"</td>"
+								"</tr>";
+						})
 // 						
-// 						 $('#box').html(_tr)
+ 						 $('#box').html(_tr)
 				}			
 				})
 				})
