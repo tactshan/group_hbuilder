@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 	</head>
 	<body>
+		<h1 align="center">商品展示</h1>
 		<table class="table table-bordered">
 			<tr>
 				<td>商品id</td>
@@ -21,7 +22,6 @@
 			<tbody id="box">
 				
 			</tbody>
-			
 		</table>
 	</body>
 </html>
@@ -42,7 +42,6 @@
 						dataType:'json',
 						success:function(msg){
 							$.each(msg.data,function(i,value){
-				
 								_tr+="<tr>"+
 									"<td>"+value.goods_id+"</td>"+
 									"<td>"+value.goods_name+"</td>"+
@@ -53,7 +52,7 @@
 							$('#box').html(_tr)
 						},
 					})
-				})
+					})
 			$(document).on('click','.username',function(){
 				var _this=$(this);
 				var goods_id=_this.attr('goods_id');
