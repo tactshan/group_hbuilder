@@ -15,6 +15,7 @@
 			mui.init()
 		</script>
 		<table class="table table-bordered">
+			<h1 align="center">商品详情</h1>
 			<input type="hidden" id="goods_id">
 			<input type="hidden" id="uid">
 			<input type="hidden" id="token">
@@ -25,6 +26,10 @@
 			<tr>
 				<td>商品价格：</td>
 				<td id="goods_price"></td>
+			</tr>
+			<tr>
+				<td>商品库存：</td>
+				<td id="goods_num"></td>
 			</tr>
 			<tr>
 				<td>购买数量：</td>
@@ -69,11 +74,9 @@
 			success:function(data){
 				var goods_name = $("#goods_name").html(data.goods_name)
 				var goods_price = $("#goods_price").html(data.goods_price)
-				
-				
+				var goods_num = $("#goods_num").html(data.goods_num)
 			}
 		});
-		
 	})
 	function addCart(){
 		var buy_num = $("#buy_num").val()
@@ -97,6 +100,9 @@
 			timeout:10000,//超时时间设置为10秒；
 			success:function(data){
 				alert(data.msg)
+				if(data.msg=="添加成功"){
+					location.href="./cart.html"
+				}
 			}
 		});
 	}
