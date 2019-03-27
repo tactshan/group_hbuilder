@@ -42,17 +42,21 @@
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript">
-	function cart(){
-		mui.ajax('http://group_shop.tactshan.com/group_shop/goods_detail',{
-			data:{
-				
-			},
-			dataType:'json',//服务器返回json格式数据
-			type:'post',//HTTP请求类型
-			timeout:10000,//超时时间设置为10秒；
-			success:function(data){
-				alert(data)
-			}
-		});
-	}
+	$(function(){
+		alert(window.location.href)
+	})
+		
+// 	function cart(){
+// 		mui.ajax('http://group_shop.tactshan.com/group_shop/goods_detail',{
+// 			data:{
+// 				
+// 			},
+// 			dataType:'json',//服务器返回json格式数据
+// 			type:'post',//HTTP请求类型
+// 			timeout:10000,//超时时间设置为10秒；
+// 			success:function(data){
+// 				alert(data)
+// 			}
+// 		});
+// 	}
 </script>
