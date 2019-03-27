@@ -97,6 +97,7 @@
 			type:'post',//HTTP请求类型
 			timeout:10000,//超时时间设置为10秒；
 			success:function(data){
+				alert(data.msg)
 				if(data.error==0){
 					var url='./cart.html?uid='+uid+'&token='+token
 					location.href=url;	
