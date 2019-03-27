@@ -51,7 +51,7 @@
 			</tr>		
 			<tbody id="box"></tbody>
 			<tr>
-				<td><input type="button" value="生成订单" class='orderlist'></td>
+				<td><input type="button" value="生成订单" class='orderlist' onclick="addorder()"></td>
 			</tr>
 		</table>									
 		<script src="js/mui.min.js"></script>
@@ -88,12 +88,31 @@
 					$('#box').html(_tr)
 				},
 			})				
-			})
-		$(document).on('click','.orderlist',function(){
-			var uid=$("#uid").val();
-			var token=$("#token").val();
-			var url='./orderlist.html?uid='+uid+'&token='+token
-			location.href=url;	
-			
-		})			
+			})		
+		function addorder(){			
+			var uid = $("#uid").val();
+			var token= $("#token").val();
+			mui.ajax('http://group_shop.tactshan.com/addorder',{
+				data:{
+					uid:uid,
+					token:token,
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(msg){
+					alert(msg.msg)
+					if(data.code==1){
+						var url='./orderlist.html?uid='+uid+'&token='+token	
+						location.href=url;
+					}
+				}
+			});
+		}
+// 		$(document).on('click','.orderlist',function(){
+// 			var uid=$("#uid").val();
+// 			var token=$("#token").val();
+// 			var url='./orderlist.html?uid='+uid+'&token='+token
+// 			location.href=url;				
+// 		})	
 </script>
