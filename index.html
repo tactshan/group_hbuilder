@@ -51,17 +51,19 @@
 	$(function(){
 		mui.init()
 		mui.plusReady(function(){
-			var self = plus.webview.currentWebview();
-				uid = self.uid;//获得参数
-				token = self.token;//获得参数
+
+			// var self = plus.webview.currentWebview();
+// 				uid = self.uid;//获得参数
+// 				token = self.token;//获得参数
 				var _tr=''
 					$.ajax({
 						url:"http://group_shop.tactshan.com/goodslist",
-						data:{token:token,uid:uid},
+						data:{},
 						method:'POST',
 						dataType:'json',
-						success:function(msg){
-							$.each(msg.data,function(i,value){
+						success:function(msg){	
+							//alert(msg.data)
+							$.each(msg.data,function(i,value){				
 								_tr+="<tr>"+
 									"<td>"+value.goods_id+"</td>"+
 									"<td>"+value.goods_name+"</td>"+
@@ -74,6 +76,7 @@
 					})
 					})
 			$(document).on('click','.username',function(){
+
 				var _this=$(this);
 				var goods_id=_this.attr('goods_id');
 				var url='./detail.html?goods_id='+goods_id
