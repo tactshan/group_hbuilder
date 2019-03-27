@@ -47,7 +47,7 @@
 			
 				var _tr=''
 				$.ajax({
-					url:"http://group_shop.tactshan.com/orderlist",
+					url:"http://group_shop.tactshan.com/orderlist", 
 					data:{token:token,uid:uid},
 					method:'POST',
 					dataType:'json',
@@ -59,7 +59,7 @@
 									"<td>"+value.total_amont+"</td>"+
 									"<td>"+value.c_time+"</td>"+
 									"<td>"+value.order_status+"</td>"+
-									"<td>"+"<input type='button' value='订单详情' class='' >"+"</td>"
+									"<td>"+"<input type='button' value='订单详情' class='orderdetail'  >"+"</td>"
 								"</tr>";
 						})
 // 						
@@ -67,5 +67,13 @@
 				}			
 				})
 				})
+				$(document).on('click','.orderdetail',function(){
+					
+					var uid=$("#uid").val();
+		 			var token=$("#token").val();
+					var url='orderdetail.html?uid='+uid+'&token='+token
+					location.href=url;	 
+				})		
+				
 		</script>
 </html>
