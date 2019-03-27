@@ -19,11 +19,15 @@
 			}
 		</style>
 	</head>
-	<body>		
+	<body>	
+		<div id="btn">
 		<b class="mui-btn mui-btn-block mui-btn-primary"><button onclick="register()" style="color: #080808;">注册</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="login()" style="color: #080808;">登录</button></b>
+		</div>
+		<input type="hidden" id="uid" value="">
+		<input type="hidden" id="token" value="">
 		<script src="js/mui.min.js"></script>
 		<script src="js/update.js" type="text/javascript" charset="utf-8"></script>	
-		
+		<script src="js/jquery-3.2.1.min.js"></script>
 		<table class="table table-bordered">
 			<tr>
 				<td>商品id</td>
@@ -47,13 +51,29 @@
 		location.href="./detail.html"
 	}	
 </script>
-<script>
+
+<script>  
 	$(function(){
-		mui.init()
+// 		var uid=$('#uid').val();
+// 		var token=$('#token').val();
+		/* if(uid!=''||token!=''){
+			$('#btn').hide();
+		} */
+		mui.init()  
 		mui.plusReady(function(){
 			var self = plus.webview.currentWebview();
 				uid = self.uid;//获得参数
 				token = self.token;//获得参数
+				//alert(token)  
+				if(uid==undefined||token==undefined){
+					$('#btn').show();
+				}else{
+					$('#btn').hide();
+				}
+
+				$('#uid').val(uid);  
+				$('#token').val(token)  
+				// $('#btn').hide();  
 				var _tr=''
 					$.ajax({
 						url:"http://group_shop.tactshan.com/goodslist",
@@ -72,7 +92,7 @@
 							$('#box').html(_tr)
 						},
 					})
-					})
+		})
 			$(document).on('click','.username',function(){
 				var _this=$(this);
 				var goods_id=_this.attr('goods_id');
@@ -81,3 +101,5 @@
 			})					
 		})
 </script>
+
+
