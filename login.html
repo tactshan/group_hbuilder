@@ -12,7 +12,7 @@
 				margin: 20px auto 0px auto;
 			}
 			     
-			.mui-input-group {
+			.mui-input-group {   
 				margin-top: 10px;
 			}
 			
@@ -141,13 +141,11 @@
 						account:account,    
 						pwd:pwd, 
 					},
-					dataType:'json',//服务器返回json格式数据
+					dataType:'json',//服务器返回json格式数据  
 					type:'post',//HTTP请求类型  
 					timeout:10000,//超时时间设置为10秒；
 					headers:{'Content-Type':'application/x-www-form-urlencoded'},	              
 					success:function(data){
-						   if(data.code==0){
-								alert(data.msg) 
 						if(data.code==0){
 								alert(data.msg) 
 								var webview=mui.openWindow({
@@ -157,12 +155,9 @@
 									uid:data.uid 
 								},
 							})
-						}else{  
+						}else{    
 								mui.alert(data.msg,'提示信息','关闭');
 						}           
-					},  
-								location.href="./cart.html"
-							 }
 					},
 					error:function(xhr,type,errorThrown){
 						//异常处理；
