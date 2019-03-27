@@ -17,13 +17,7 @@
 					<input type="hidden" id="token">
 		</header>
 		<table class="table table-bordered">  
-			<tr>  
-				<td>订单号</td>
-				<td>订单总价</td>
-				<td>订单时间</td>
-				<td>订单状态</td>
-				<td>操作</td>
-			</tr>
+			
 			<tbody id="box">   
 				
 			</tbody>
@@ -54,16 +48,13 @@
 					success:function(msg){
 					  
 						$.each(msg.data,function(i,value){
-							_tr+="<tr>"+
-									"<td>"+value.order_num+"</td>"+
-									"<td>"+value.total_amont+"</td>"+
-									"<td>"+value.c_time+"</td>"+
-									"<td>"+value.order_status+"</td>"+
-									"<td>"+"<input type='button' value='订单详情' class='orderdetail'  >"+"</td>"
-								"</tr>";
-						})
-// 						
- 						 $('#box').html(_tr)
+							_tr+="<tr><td>订单号</td><td class='order_num'>"+value.order_num+"</td></tr>"+
+							"<tr><td>订单总价</td><td>"+value.total_amont+"</td></tr>"+
+							"<tr><td>订单时间</td><td>"+value.c_time+"</td></tr>"+
+							"<tr><td>订单状态</td><td>"+value.order_status+"</td></tr>"+
+							"<tr><td>"+"<input type='button' value='订单详情' class='orderdetail' order_num='"+value.order_num+"'>"+"</td></tr>";  
+						}) 						
+ 						 $('#box').html(_tr+"<br>")
 				}			
 				})
 				})
@@ -71,7 +62,9 @@
 					
 					var uid=$("#uid").val();
 		 			var token=$("#token").val();
-					var url='orderdetail.html?uid='+uid+'&token='+token
+					var _this=$(this);
+					var order_num=_this.attr('order_num');  	
+					var url='orderdetail.html?uid='+uid+'&token='+token+'&order_num='+order_num
 					location.href=url;	 
 				})		
 				
