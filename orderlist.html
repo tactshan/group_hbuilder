@@ -12,12 +12,11 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left">返回</a>
-			<h1 class="mui-title">订单展示</h1>	
+			<h1 class="mui-title" align="center">订单展示</h1>	
 					<input type="hidden" id="uid">
 					<input type="hidden" id="token">
 		</header>
-		<table class="table table-bordered">
-			
+		<table class="table table-bordered">  
 			<tr>  
 				<td>订单号</td>
 				<td>订单总价</td>
@@ -25,7 +24,7 @@
 				<td>订单状态</td>
 				<td>操作</td>
 			</tr>
-			<tbody id="box"> 
+			<tbody id="box">   
 				
 			</tbody>
 		</table>
@@ -45,15 +44,15 @@
 				
 				$("#uid").val(uid)
 				$("#token").val(token)
-				alert(_url);
-// 				var _tr=''
-// 				$.ajax({
-// 					url:"http://group_shop.tactshan.com/orderlist",
-// 					data:{token:token,uid:uid},
-// 					method:'POST',
-// 					dataType:'json',
-// 					success:function(msg){
-// 						alert(msg.code);    
+			
+				var _tr=''
+				$.ajax({
+					url:"http://group_shop.tactshan.com/orderlist",
+					data:{token:token,uid:uid},
+					method:'POST',
+					dataType:'json',
+					success:function(msg){
+						alert(msg.msg);    
 // 						$.each(msg.data,function(i,value){
 // 							_tr+="<tr>"+
 // 									"<td>"+value.order_num+"</td>"+
@@ -63,10 +62,10 @@
 // 									"<td>"+"<input type='button' value='订单详情' class='' >"+"</td>"
 // 								"</tr>";
 // 						})
-						
-						//$('#box').html(_tr)
-					//},
-				//})				
+// 						
+// 						 $('#box').html(_tr)
+				}			
+				})
 				})
 		</script>
 </html>
