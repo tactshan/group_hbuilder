@@ -8,6 +8,10 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link rel="stylesheet" href="css/mui.min.css">
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet"/>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 		<style type="text/css">
 			#list {
 				/*避免导航边框和列表背景边框重叠，看起来像两条边框似得；*/
@@ -16,9 +20,20 @@
 		</style>
 	</head>
 	<body>		
-		<b class="mui-btn mui-btn-block mui-btn-primary"><button onclick="register()">注册</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="login()">登录</button></b>
+		<b class="mui-btn mui-btn-block mui-btn-primary"><button onclick="register()" style="color: #080808;">注册</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="login()" style="color: #080808;">登录</button></b>
 		<script src="js/mui.min.js"></script>
 		<script src="js/update.js" type="text/javascript" charset="utf-8"></script>	
+		
+		<table class="table table-bordered">
+			<tr>
+				<td>商品id</td>
+				<td>商品名称</td>
+				<td>商品价格</td>
+				<td>详情</td>
+			</tr>
+			<tbody id="box">
+				
+			</tbody>
 	</body>
 </html>
 <script type="text/javascript">
@@ -28,4 +43,44 @@
 	function login(){
 		location.href="./login.html"
 	}
+<<<<<<< HEAD
+=======
+	function goods(){
+		location.href="./detail.html"
+	}	
+</script>
+<script>
+	$(function(){
+		mui.init()
+		mui.plusReady(function(){
+			var self = plus.webview.currentWebview();
+				uid = self.uid;//获得参数
+				token = self.token;//获得参数
+				var _tr=''
+					$.ajax({
+						url:"http://group_shop.tactshan.com/goodslist",
+						data:{token:token,uid:uid},
+						method:'POST',
+						dataType:'json',
+						success:function(msg){
+							$.each(msg.data,function(i,value){
+								_tr+="<tr>"+
+									"<td>"+value.goods_id+"</td>"+
+									"<td>"+value.goods_name+"</td>"+
+									"<td>"+value.goods_price+"</td>"+
+									"<td>"+"<input type='button' value='详情' class='username' goods_id='"+value.goods_id+"'>"+"</td>"
+								"</tr>";
+							})  
+							$('#box').html(_tr)
+						},
+					})
+					})
+			$(document).on('click','.username',function(){
+				var _this=$(this);
+				var goods_id=_this.attr('goods_id');
+				var url='./detail.html?goods_id='+goods_id
+				location.href=url;	
+			})					
+		})
+>>>>>>> ce97ed9b0d21064e16e363e30d4071558571cf89
 </script>
