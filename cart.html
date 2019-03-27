@@ -47,9 +47,12 @@
 				<td>商品价格</td>
 				<td>购买数量</td>
 				<td>商品总价</td>
-				<td>操作</td>
-			</tr>
+				<td>操作</td>				
+			</tr>		
 			<tbody id="box"></tbody>
+			<tr>
+				<td><input type="button" value="生成订单" class='orderlist'></td>
+			</tr>
 		</table>									
 		<script src="js/mui.min.js"></script>
 		<script src="js/app.js"></script>		
@@ -65,7 +68,7 @@
 			var token=_url.substring(token_place+2,_url.length)			
 			$("#uid").val(uid)
 			$("#token").val(token)
-			//alert(token)
+			//alert(_url)
 			var _tr=''
 			$.ajax({
 				url:"http://group_shop.tactshan.com/cart/list",
@@ -79,7 +82,7 @@
 								"<td>"+value.goods_price+"</td>"+
 								"<td>"+value.buy_num+"</td>"+
 								"<td>"+value.total_price+"</td>"+
-								"<td>"+"<input type='button' value='删除' uid='"+value.uid+"'>"+"<input type='button' value='生成订单' class='orderlist' uid='"+value.uid+"'>"+"</td>"+
+								"<td>"+"<input type='button' value='删除' uid='"+value.uid+"'>"+"</td>"+								
 							"</tr>";
 					})
 					$('#box').html(_tr)
@@ -87,8 +90,10 @@
 			})				
 			})
 		$(document).on('click','.orderlist',function(){
+			var uid=$("#uid").val();
+			var token=$("#token").val();
 			var url='./orderlist.html?uid='+uid+'&token='+token
 			location.href=url;	
-		})
 			
+		})			
 </script>
