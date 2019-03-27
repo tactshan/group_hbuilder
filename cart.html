@@ -7,6 +7,7 @@
 		<title></title>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 		<script src="js/jquery-3.2.1.min.js"></script>
 		<style>
 			.area {
@@ -38,13 +39,15 @@
 	</head>
 	<body>	
 		<h4 align="center">购物车列表</h4>
-		<table>
+		<table class="table table-bordered">
+			<input type="hidden" id="uid">
+			<input type="hidden" id="token">
 			<tr>
 				<td>商品名称</td>
 				<td>商品价格</td>
 				<td>购买数量</td>
 				<td>商品总价</td>
-				<td>添加时间</td>
+				<td>操作</td>
 			</tr>
 			<tbody id="box"></tbody>
 		</table>									
@@ -53,16 +56,16 @@
 	</body>
 </html>
 <script type="text/javascript" charset="utf-8">
-		mui.plusReady(function(){
-				var self = plus.webview.currentWebview();
-				var goods_name=self.goods_name;
-				var goods_price=self.goods_price;
-				var buy_num=self.buy_num;
-				var total_price=self.total_price;
-				var ctime=self.ctime;
-		});
 		$(function(){
-			alert(1)
+			_url=window.location.href
+			var uid_place=_url.lastIndexOf("uid=");
+			var uid_last_place=_url.lastIndexOf("&t")
+			var uid=_url.substring(uid_place+4,uid_last_place)
+			var token_place=_url.lastIndexOf("n=")
+			var token=_url.substring(token_place+2,_url.length)			
+			$("#uid").val(uid)
+			$("#token").val(token)
+			//alert(token)
 			var _tr=''
 			$.ajax({
 				url:"http://group_shop.tactshan.com/cart/list",
@@ -76,11 +79,16 @@
 								"<td>"+value.goods_price+"</td>"+
 								"<td>"+value.buy_num+"</td>"+
 								"<td>"+value.total_price+"</td>"+
-								"<td>"+value.ctime+"</td>"+
+								"<td>"+"<input type='button' value='删除' uid='"+value.uid+"'>"+"<input type='button' value='生成订单' class='orderlist' uid='"+value.uid+"'>"+"</td>"+
 							"</tr>";
 					})
 					$('#box').html(_tr)
 				},
+			})				
 			})
+		$(document).on('click','.orderlist',function(){
+			var url='./orderlist.html?uid='+uid+'&token='+token
+			location.href=url;	
 		})
+			
 </script>
