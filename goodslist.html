@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet"/>
+	</head>
+	<body>
+		<form action="" method="">
+			
+			<tr>
+				<td>商品id</td>
+				<td>商品名称</td>
+				<td>商品价格</td>
+			</tr>
+		</form>
+			<div >
+				<table id="box">
+					
+				</table>
+			</div>
+		
+	</body>
+</html>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/mui.js"></script>
+	<script type="text/javascript">  
+	$(function(){
+		mui.init()
+		mui.plusReady(function(){
+			var self = plus.webview.currentWebview();
+				uid = self.uid;//获得参数
+				token = self.token;//获得参数
+				var _tr=''
+						$.ajax({
+								url:"http://group_shop.tactshan.com/goodslist",
+								data:{token:token,uid:uid},
+								method:'POST',
+								dataType:'json',
+								success:function(msg){
+						
+									$.each(msg.data,function(i,value){
+						
+										_tr+="<tr>"+
+												"<td>"+value.goods_id+"</td>"+
+												"<td>"+value.goods_name+"</td>"+
+												"<td>"+value.goods_price+"</td>"+
+											"</tr>";
+									})  
+									$('#box').html(_tr)
+								},
+							})
+						})
+		})
+		
+		
+			
+
+	</script>
