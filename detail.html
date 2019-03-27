@@ -43,20 +43,33 @@
 <script src="bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript">
 	$(function(){
-		alert(window.location.href)
+		_url=window.location.href
+// 		alert(_url)
+// 		return false
+		var goods_id_place=_url.lastIndexOf("_id=");
+		var goods_id_last_place=_url.lastIndexOf("&u");
+		var goods_id=_url.substring(goods_id_place+4,goods_id_last_place)
+		var uid_place=_url.lastIndexOf("uid=");
+		var uid_last_place=_url.lastIndexOf("&t")
+		var uid=_url.substring(uid_place+4,uid_last_place)
+		var token_place=_url.lastIndexOf("n=")
+		var token=_url.substring(token_place+2,_url.length)
+		function cart(){
+			mui.ajax('http://group_shop.tactshan.com/group_shop/goods_detail',{
+				data:{
+					goods_id : goods_id,
+					uid : uid,
+					token : token 
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){
+					alert(data.msg)
+				}
+			});
+		}
 	})
 		
-// 	function cart(){
-// 		mui.ajax('http://group_shop.tactshan.com/group_shop/goods_detail',{
-// 			data:{
-// 				
-// 			},
-// 			dataType:'json',//服务器返回json格式数据
-// 			type:'post',//HTTP请求类型
-// 			timeout:10000,//超时时间设置为10秒；
-// 			success:function(data){
-// 				alert(data)
-// 			}
-// 		});
-// 	}
+	
 </script>
