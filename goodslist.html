@@ -60,18 +60,8 @@
 			$(document).on('click','.username',function(){
 				var _this=$(this);
 				var goods_id=_this.attr('goods_id');
-				$.ajax({
-					 url:'./detail.html',
-					data:'goods_id='+goods_id+'&uid='+uid+'&token='+token,
-					dataType:'json',
-					type:'post',
-					success:function(json_info){
-							 alert(1)
-					}
-			
-					
-				})
-				
+				var url='./detail.html?goods_id='+goods_id+'&uid='+uid+'&token='+token
+				location.href=url;
 				
 			})
 				
