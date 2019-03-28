@@ -21,11 +21,11 @@
 	</head>		
 	<body>	
 		<div id="btn">
-		
-		<b class="mui-btn mui-btn-block mui-btn-primary"><button onclick="register()" style="color: #080808;" id="register">注册</button>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="login()" style="color: #080808;" id="login">登录</button>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" id="center" class="mui-btn mui-icon mui-icon-home mui-right">个人中心</button></b>
-		 
+		<b class="mui-btn mui-btn-block mui-btn-primary">
+			<button onclick="register()" style="color: #080808;" id="register">注册</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button onclick="login()" style="color: #080808;" id="login">登录</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button type="button" id="center" class="mui-btn mui-icon mui-icon-home mui-right">个人中心</button>
+		</b>
 		</div>
 		<input type="hidden" id="uid" value="">  
 		<input type="hidden" id="token" value="">
@@ -34,10 +34,10 @@
 		<script src="js/jquery-3.2.1.min.js"></script>
 		<table class="table table-bordered">
 			<tr>
-				<td>商品id</td>
-				<td>商品名称</td> 
-				<td>商品价格</td>
-				<td>详情</td>
+				<td style="width: 20px;">ID</td>
+				<td align=center >商品名称</td> 
+				<td align=center>商品价格</td>
+				<td align=center>详情</td> 
 			</tr>
 			<tbody id="box">
 				
@@ -58,11 +58,6 @@
 
 <script>  
 	$(function(){
-// 		var uid=$('#uid').val();
-// 		var token=$('#token').val();
-		/* if(uid!=''||token!=''){
-			$('#btn').hide();
-		} */
 		mui.init()  
 		mui.plusReady(function(){
 			var self = plus.webview.currentWebview();
@@ -92,10 +87,10 @@
 							//alert(msg.data)
 							$.each(msg.data,function(i,value){				
 								_tr+="<tr>"+
-									"<td>"+value.goods_id+"</td>"+
-									"<td>"+value.goods_name+"</td>"+
-									"<td>"+value.goods_price+"</td>"+
-									"<td>"+"<input type='button' value='详情' class='username' goods_id='"+value.goods_id+"'>"+"</td>"
+									"<td align=center>"+value.goods_id+"</td>"+
+									"<td align=center>"+value.goods_name+"</td>"+
+									"<td align=center>"+value.goods_price+'￥'+"</td>"+
+									"<td align=center>"+"<input type='button' value='详情' class='username' goods_id='"+value.goods_id+"'>"+"</td>"
 								"</tr>";
 							})  
 							$('#box').html(_tr)
