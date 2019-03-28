@@ -140,13 +140,8 @@
 								"<li class='mui-table-view-cell'>"+'时间:'+value.c_time+"</li>"+
 								"<li class='mui-table-view-cell'>"+'状态:'+"<span style='color:blue;'>"+value.order_status+"</span>"+"</li>"+
 								"</ul>"+
-<<<<<<< HEAD
 								"<br>" 
 						}) 
-=======
-								"<br>"  
-						})
->>>>>>> lmq
 							$('#order').html(_h3)         
 					}else if(type=="collection"){
 						$.each(data.msg,function(i,value){	
@@ -156,9 +151,6 @@
 								"</ul>"+
 								"<br>"
 						})
-<<<<<<< HEAD
-							$('#collection').html(_h3)     
-=======
 							$('#collection').html(_h3)      
 					}else if(type=="cart"){    
 						$.each(data.msg,function(i,value){	
@@ -171,13 +163,12 @@
 								"<br>"
 						})  
 							$('#cart').html(_h3)   
->>>>>>> lmq
 					}else{
 						$.each(data.msg,function(i,value){
 							_h3+="<ul class='mui-table-view'  style='border:solid 1px  #C0A16B ;'>"+
 							"<li class='mui-table-view-cell'>"+'商品名称:'+value.goods_name+"</li>"+
 							"<li class='mui-table-view-cell'>"+'商品价格:'+value.goods_price+'￥'+"</li>"+
-							"</ul>"+
+							"</ul>"+ 
 							"<br>" 
 						})
 							$('#like').html(_h3)        
