@@ -9,6 +9,41 @@
 		<link href="css/mui.min.css" rel="stylesheet"/>
 		<script src="js/jquery-3.2.1.min.js"></script>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+		<style>
+			html,body {
+				background-color: #efeff4;
+			}
+			.title{
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+			 .oa-contact-cell.mui-table .mui-table-cell {
+				padding: 11px 0;
+				vertical-align: middle;
+			}
+			
+			.oa-contact-cell {
+				position: relative;
+				margin: -11px 0;
+			}
+			
+			.oa-contact-avatar {
+				width: 75px;
+			}
+			.oa-contact-avatar img {
+				border-radius: 50%;
+			}
+			.oa-contact-content {
+				width: 100%;
+			}
+			.oa-contact-name {
+				margin-right: 20px;
+			}
+			.oa-contact-name, oa-contact-position {
+				float: left;
+			}
+		</style>
 	</head>
 	<body>
 		<input type="hidden" id="uid">
@@ -24,9 +59,22 @@
 				<!--个人信息-->
 				<li class="mui-table-view-cell mui-collapse" id="user">
 						<a class="mui-navigate-right" href="#" id="aa">个人信息</a>
-						<div class="mui-collapse-content" id='user_content'>
-							
-						</div>
+						
+						<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+							<li class="mui-table-view-cell">
+								<div class="mui-slider-cell">
+									<div class="oa-contact-cell mui-table">
+										<div class="oa-contact-avatar mui-table-cell">
+											<img src="http://img2.imgtn.bdimg.com/it/u=4285587126,3302189430&fm=26&gp=0.jpg" style="width: 50px;height: 50px;" />
+										</div>
+										<div class="oa-contact-content mui-table-cell" id='user_content'>
+											
+											
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
 					</li>
 				<!--End个人信息-->
 				
@@ -101,17 +149,12 @@
 				timeout:10000,//超时时间设置为10秒；
 				headers:{'Content-Type':'application/x-www-form-urlencoded'},	              
 				success:function(data){    
-// 					_h3+="<h3>"+'用户id:'+data.msg.uid+"</h3>"+
-// 							"<h3>"+'用户名:'+data.msg.u_name+"</h3>"+
-// 							"<h3>"+'年龄:'+data.msg.u_age+"</h3>"+
-// 							"<h3>"+'邮箱:'+data.msg.u_email+"</h3>"
-					_h3+="<ul class='mui-table-view'>"+
-						"<li class='mui-table-view-cell'>"+'用户id:'+data.msg.uid+"</li>"+
-						"<li class='mui-table-view-cell'>"+'用户名:'+data.msg.u_name+"</li>"+
-						"<li class='mui-table-view-cell'>"+'年龄:'+data.msg.u_age+"</li>"+
-						"<li class='mui-table-view-cell'>"+'邮箱:'+data.msg.u_email+"</li>"+
-						"</ul>"
-						$('#user_content').html(_h3)      
+					_h3+="<div class='mui-clearfix'>"+
+							"<h4 class='oa-contact-name'>"+data.msg.u_name+"</h4>"+
+							"<span class='oa-contact-position mui-h6'>"+'ID:'+data.msg.uid+"</span>"+
+							"</div>"+
+							"<p class='oa-contact-email mui-h6'>"+data.msg.u_email+"</p>"
+						$('#user_content').html(_h3)     
 							
 				}
 			});	
