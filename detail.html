@@ -42,7 +42,7 @@
 			</tr>
 			<tr>
 				<td><button onclick="give_like()" id="give_a_like" style="background-color:white;">点赞</button>&nbsp;
-				<button style="background-color: white;" id="collect" onclick="collect()" type="1">收藏</button></td>
+				<button style="background-color: white;" id="collect" onclick="collect()" g_type="1">收藏</button></td>
 				<td><button onclick="addCart()" id="addcart">加入购物车</button></td>
 			</tr>
 		</table>
@@ -88,7 +88,7 @@
 			}
 		});
 		var goods_type_num = $("#goods_type").val();
-		if(goods_type_num==1){
+		if(goods_type_num==0){
 			$("#collect").css('background-color',' #A94442')
 			$("#collect").text("已收藏")
 		}else{
@@ -173,27 +173,32 @@
 		var uid = $("#uid").val();
 		var token= $("#token").val();
 		var goods_type_num = $("#goods_type").val();
+		var type=$("#collect").attr('g_type')
 		if(goods_type_num==0){
 			$("#collect").css('background-color',' #A94442')
+			$("#collect").attr('g_type','0')
 			$("#collect").text("已收藏")
 		}else{
 			$("#collect").css('background-color','white')
+			$("#collect").attr('g_type','1')
 			$("#collect").text("收藏")
 		}
 		mui.ajax('http://group_shop.tactshan.com/collect',{
 			data:{
 				goods_id:goods_id,
 				uid:uid,
-				token:token
+				token:token,
+				type:type
 			},
 			dataType:'json',//服务器返回json格式数据
 			type:'post',//HTTP请求类型
 			timeout:10000,//超时时间设置为10秒；
 			success:function(data){
 				alert(data.msg)
+				
 			},
 			error:function(xhr,type,errorThrown){
-				
+				alert(2)
 			}
 		});
 	}
