@@ -12,9 +12,10 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left">返回</a>
-			<h1 class="mui-title" align="center">订单展示</h1>	
+			<h1 class="mui-title" align="center" >订单展示</h1>	
 					<input type="hidden" id="uid">
 					<input type="hidden" id="token">
+					<input type="hidden" id="order_id">
 		</header>
 		<table class="table table-bordered">  
 			
@@ -58,21 +59,26 @@
 							"<tr><td>订单总价</td><td>"+value.total_amont+"</td></tr>"+
 							"<tr><td>订单时间</td><td>"+value.c_time+"</td></tr>"+
 							"<tr><td>订单状态</td><td>"+value.order_status+"</td></tr>"+
-							"<tr><td>"+"<input type='button' value='订单详情' class='orderdetail' order_num='"+value.order_num+"'>"+"</td></tr>";  
+							"<tr><td>"+"<input type='button' value='订单详情' class='orderdetail' order_num='"+value.order_num+"'>"+"<input type='button' value='订单删除' class='orderdel' order_id='"+value.order_id+"'>"+"</td></tr>";  
 						}) 						
  						 $('#box').html(_tr+"<br>")
 				}			
 				})
-				})
-				$(document).on('click','.orderdetail',function(){
+				$(document).on("click",".orderdel",function(){
+					var order_id=$(this).attr("order_id")
 					
-					var uid=$("#uid").val();
-		 			var token=$("#token").val();
-					var _this=$(this);
-					var order_num=_this.attr('order_num');  	
-					var url='orderdetail.html?uid='+uid+'&token='+token+'&order_num='+order_num
-					location.href=url;	 
-				})		
+					$.ajax({
+						url:"http://group_shop.tactshan.com/order_delete",
+						data:{order_id:order_id},
+						dataType:"json",
+						method:'POST',
+						success:function(data){
+							alert(data.msg)
+							location.href='./orderlist.html?uid='+uid+'&token='+token
+						}
+					})
+				})
+				})
 				
 		</script>
 </html>
