@@ -49,24 +49,21 @@
 			<input type="hidden" id="token">
 			<input type="hidden" id="cart_id">
 			<tr>
-				<td>商品名称</td>
-				<td>商品价格</td>
-				<td>购买数量</td>
-				<td>商品总价</td>
+				<td>名称</td>
+				<td>价格</td>
+				<td>数量</td>
+				<td>总价</td>
 				<td>操作</td>				
 			</tr>		
 			<tbody id="box">
 				
 			</tbody>
-			<tr>
-				<td><input type="button" value="生成订单" class='orderlist' onclick="addorder()"></td>
-			</tr>
+			
 			<div class="payment-bar">
-				<a href="#" class="settlement">结算</a>
+				<a href="#" class="settlement" class='orderlist' onclick="addorder()">生成订单</a>
 			</div>
 		</table>
 		</div>
-		
 		<script src="js/mui.min.js"></script>
 		<script src="js/app.js"></script>		
 	</body>
@@ -95,7 +92,7 @@
 								"<td>"+value.goods_price+"</td>"+
 								"<td>"+value.buy_num+"</td>"+
 								"<td>"+value.total_price+"</td>"+
-								"<td>"+"<input type='button' value='删除' class='cartdel' cart_id='"+value.id+"'>"+"</td>"+								
+								"<td>"+"<button type='button' class='mui-btn mui-btn-danger cartdel' cart_id='"+value.id+"'>删除</button>"+"</td>"+
 							"</tr>";
 					})
 					$('#box').html(_tr)
@@ -135,63 +132,11 @@
 				}
 			});
 		}
-		
-	$(function(){
-		_url=window.location.href
-		var uid_place=_url.lastIndexOf("uid=");
-		var uid_last_place=_url.lastIndexOf("&t")
-		var uid=_url.substring(uid_place+4,uid_last_place)
-		var token_place=_url.lastIndexOf("n=")
-		var token=_url.substring(token_place+2,_url.length)			
-		$("#uid").val(uid)
-		$("#token").val(token)
-		//alert(_url)
-		var _tr=''
-		$.ajax({
-			url:"http://group_shop.tactshan.com/cart/list",
-			data:{token:token,uid:uid},
-			method:'POST',
-			dataType:'json',
-			success:function(msg){
-				$.each(msg.data,function(i,value){
-					_tr+="<tr>"+
-							"<td>"+value.goods_name+"</td>"+
-							"<td>"+value.goods_price+"</td>"+
-							"<td>"+value.buy_num+"</td>"+
-							"<td>"+value.total_price+"</td>"+
-							"<td>"+"<input type='button' value='删除' class='cartdel' cart_id='"+value.cart_id+"'>"+"</td>"+								
-						"</tr>";
-				})
-				$('#box').html(_tr)
-			},
-		})				
-		})		
-	function addorder(){			
-		var uid = $("#uid").val();
-		var token= $("#token").val();
-		mui.ajax('http://group_shop.tactshan.com/addorder',{
-			data:{
-				uid:uid,
-				token:token,
-			},
-			dataType:'json',//服务器返回json格式数据
-			type:'post',//HTTP请求类型
-			timeout:10000,//超时时间设置为10秒；
-			success:function(msg){
-				alert(msg.msg)
-				if(msg.code==1){
-					var url='./orderlist.html?uid='+uid+'&token='+token	
-					location.href=url;
-				}
-			}
-		});
-	}
+
 	$(document).on("click",".cartdel",function(){
 				var cart_id=$(this).attr("cart_id")
-				alert(cart_id)
 				$(document).on("click",".orderdel",function(){
 					var cart_id=$(this).attr("order_id")
-					alert(order_id)
 					$.ajax({
 						url:"http://group_shop.tactshan.com/cart/delcart",
 						data:{cart_id:cart_id},
