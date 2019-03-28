@@ -41,12 +41,8 @@
 				<td id="like_num"></td>
 			</tr>
 			<tr>
-<<<<<<< HEAD
-				<td><button onclick="like()">点赞</button></td>
-=======
 				<td><button onclick="give_like()" id="give_a_like" style="background-color:white;">点赞</button>&nbsp;
 				<button style="background-color: white;" id="collect" onclick="collect()" type="1">收藏</button></td>
->>>>>>> wei
 				<td><button onclick="addCart()" id="addcart">加入购物车</button></td>
 			</tr>
 		</table>
@@ -86,13 +82,9 @@
 				var goods_name = $("#goods_name").html(data.goods_name)
 				var goods_price = $("#goods_price").html(data.goods_price)
 				var goods_num = $("#goods_num").html(data.goods_num)
-<<<<<<< HEAD
 				var access=$("#access").html(data.access_num);
 				var like_num=$("#like_num").html(data.like_num);
-=======
-				var access=$("#access").html(data.access_num);
 				var goods_type=$("#goods_type").val(data.goods_type);
->>>>>>> wei
 			}
 		});
 		var goods_type_num = $("#goods_type").val();
@@ -136,11 +128,6 @@
 			}
 		});
 	}
-<<<<<<< HEAD
-	function like(){
-		var goods_id= $("#goods_id").val();
-		mui.ajax('http://group_shop.tactshan.com//give_a_like',{
-=======
 	
 	function give_like(){
 		var goods_id= $("#goods_id").val();
@@ -194,7 +181,6 @@
 			$("#collect").text("收藏")
 		}
 		mui.ajax('http://group_shop.tactshan.com/collect',{
->>>>>>> wei
 			data:{
 				goods_id:goods_id
 			},
