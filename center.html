@@ -13,29 +13,88 @@
 	<body>
 		<input type="hidden" id="uid">
 		<input type="hidden" id="token">
-		<h4 align="center">个人中心列表</h4>
-		<tr>
-			<h2 align="center">欢迎<font id="name" color="red"></font>进入个人中心</h2>
-		</tr>
-		<div style="float: left; width:100px; border-right:none; height:500px; border: 1px solid red;">
-			
-			<tr align="center">
-				<td><input type="button" value="个人信息" id="user" onclick="addorder()" style="background-color: #5BC0DE;"></td>
-			</tr>
-			<tr align="center">
-				<td><input type="button" value="收藏夹" class="collection" onclick="addorder()" style="background-color: #5BC0DE;"></td>
-			</tr>
-			<tr align="center">
-				<td><input type="button" value="点赞信息" class="collection" onclick="addorder()" style="background-color: #5BC0DE;"></td>
-			</tr>
-			<br>
-			<tr align="center">
-				<td><input type="button" value="我的订单" class="collection" onclick="addorder()" style="background-color: #5BC0DE;"></td>
-			</tr>		
+		<!-- <h4 align="center">个人中心列表</h4> -->
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">个人中心列表</h1>
+		</header>
+	<div class="mui-content">
+			<div class="mui-card">
+				<ul class="mui-table-view">
+				<!--个人信息-->
+				<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">个人信息</a>
+						<div class="mui-collapse-content">
+							<h1>h1. Heading</h1>
+							<h2>h2. Heading</h2>
+							<h3>h3. Heading</h3>
+							<h4>h4. Heading</h4>
+							<h5>h5. Heading</h5>
+							<h6>h6. Heading</h6>
+							<p>
+								p. 目前最接近原生App效果的框架。
+							</p>
+						</div>
+					</li>
+				<!--End个人信息-->
+				
+				<!--我的订单-->
+				<li class="mui-table-view-cell mui-collapse">
+					<a class="mui-navigate-right" href="#">我的订单</a>
+					<div class="mui-collapse-content">
+						<h1>h1. Heading</h1>
+						<h2>h2. Heading</h2>
+						<h3>h3. Heading</h3>
+						<h4>h4. Heading</h4>
+						<h5>h5. Heading</h5>
+						<h6>h6. Heading</h6>
+						<p>
+							p. 目前最接近原生App效果的框架。
+						</p>
+					</div>
+				</li>
+				<!--End我的订单-->
+				 
+				<!--收藏夹-->
+				<li class="mui-table-view-cell mui-collapse">
+					<a class="mui-navigate-right" href="#">收藏夹</a>
+					<div class="mui-collapse-content">
+						<h1>h1. Heading</h1>
+						<h2>h2. Heading</h2>
+						<h3>h3. Heading</h3>
+						<h4>h4. Heading</h4>
+						<h5>h5. Heading</h5>
+						<h6>h6. Heading</h6>
+						<p>
+							p. 目前最接近原生App效果的框架。
+						</p>
+					</div>
+				</li>
+				<!--End收藏夹-->
+				
+				<!--点赞信息-->
+				<li class="mui-table-view-cell mui-collapse">
+					<a class="mui-navigate-right" href="#">点赞信息</a>
+					<div class="mui-collapse-content">
+						<h1>h1. Heading</h1>
+						<h2>h2. Heading</h2>
+						<h3>h3. Heading</h3>
+						<h4>h4. Heading</h4>
+						<h5>h5. Heading</h5>
+						<h6>h6. Heading</h6>
+						<p>
+							p. 目前最接近原生App效果的框架。
+						</p>
+					</div>
+				</li>
+				<!--End点赞信息-->						
+				</ul>
+			</div>
 		</div>
-		<div style="float: left; border-top: 1px solid red; border-right: 1px solid red; border-bottom: 1px solid red; height:500px; width:270px;">			
-		</div>
+		
+	
 		<script src="js/mui.js"></script>
+		<script src="js/mui.min.js"></script>
 		<script type="text/javascript">
 			mui.init()
 		</script>
