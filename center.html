@@ -22,9 +22,9 @@
 			<div class="mui-card">
 				<ul class="mui-table-view">
 				<!--个人信息-->
-				<li class="mui-table-view-cell mui-collapse">
+				<li class="mui-table-view-cell mui-collapse" id="user">
 						<a class="mui-navigate-right" href="#" id="aa">个人信息</a>
-						<div class="mui-collapse-content">
+						<div class="mui-collapse-content" id='user_content'>
 							
 						</div>
 					</li>
@@ -103,6 +103,7 @@
 		$("#uid").val(uid)
 		$("#token").val(token)
 		
+		
 		function url(){
 // 			var id=$("#uid").val()
 // 			var token=$("#token").val()	
@@ -123,9 +124,29 @@
 				}
 			});
 		}
-		$(document).on('click','#user',function(){
-			
-		})	
-
 	})
+		mui('body').on('tap','#user',function(){
+			var uid=$("#uid").val()
+			var token=$("#token").val()	
+			var _h3='';
+			mui.ajax('http://group_shop.tactshan.com/center',{  
+				data:{
+					uid:uid,    
+					token:token, 
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型  
+				timeout:10000,//超时时间设置为10秒；
+				headers:{'Content-Type':'application/x-www-form-urlencoded'},	              
+				success:function(data){    
+					_h3+="<h3>"+'用户id:'+data.msg.uid+"</h3>"+
+							"<h3>"+'用户名:'+data.msg.u_name+"</h3>"+
+							"<h3>"+'年龄:'+data.msg.u_age+"</h3>"+
+							"<h3>"+'邮箱:'+data.msg.u_email+"</h3>"
+					$('#user_content').html(_h3)  
+							
+				}
+			});	
+		})
+			
 </script>
