@@ -103,9 +103,11 @@
 			timeout:10000,//超时时间设置为10秒；
 			success:function(data){
 				if(data.code==0){
+					alert(data.msg)
 					var url='./cart.html?uid='+uid+'&token='+token
 					location.href=url;	
 				}else if(data.code==40001){
+					alert(data.msg)
 					location.href="./login.html"
 				}
 			}
