@@ -21,10 +21,12 @@
 	</head>		
 	<body>	
 		<div id="btn">
-
-		<b class="mui-btn mui-btn-block mui-btn-primary"><button onclick="register()" style="color: #080808;">注册</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="login()" style="color: #080808;">登录</button></b>
+		
+		<b class="mui-btn mui-btn-block mui-btn-primary"><button onclick="register()" style="color: #080808;" id="register">注册</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="login()" style="color: #080808;" id="login">登录</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button  style="color: #080808;" id="center">个人中心</button></b>
 		</div>
-		<input type="hidden" id="uid" value="">
+		<input type="hidden" id="uid" value="">  
 		<input type="hidden" id="token" value="">
 		<script src="js/mui.min.js"></script>
 		<script src="js/update.js" type="text/javascript" charset="utf-8"></script>	
@@ -68,8 +70,11 @@
 				//alert(token)  
 				if(uid==undefined||token==undefined){
 					$('#btn').show();
+					$('#center').hide();
 				}else{
-					$('#btn').hide();
+					$('#register').hide();
+					$('#login').hide();
+					$('#center').show();
 				}
 
 				$('#uid').val(uid);  
@@ -104,7 +109,14 @@
 				var goods_id=_this.attr('goods_id');
 				var url='./detail.html?goods_id='+goods_id+'&uid='+uid+'&token='+token  
 				location.href=url;	
-			})					
+			})		
+			$(document).on('click','#center',function(){
+				var uid=$('#uid').val();
+				var token=$('#token').val();
+				//alert(token)
+				var url='./center.html?uid='+uid+'&token='+token
+				location.href=url;	
+			})		
 
 		})
 </script>
