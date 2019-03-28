@@ -22,18 +22,10 @@
 			<div class="mui-card">
 				<ul class="mui-table-view">
 				<!--个人信息-->
-				<li class="mui-table-view-cell mui-collapse">
-						<a class="mui-navigate-right" href="#">个人信息</a>
-						<div class="mui-collapse-content">
-							<h1>h1. Heading</h1>
-							<h2>h2. Heading</h2>
-							<h3>h3. Heading</h3>
-							<h4>h4. Heading</h4>
-							<h5>h5. Heading</h5>
-							<h6>h6. Heading</h6>
-							<p>
-								p. 目前最接近原生App效果的框架。
-							</p>
+				<li class="mui-table-view-cell mui-collapse" id="user">
+						<a class="mui-navigate-right" href="#" id="aa">个人信息</a>
+						<div class="mui-collapse-content" id='user_content'>
+							
 						</div>
 					</li>
 				<!--End个人信息-->
@@ -110,17 +102,7 @@
 		var token=_url.substring(token_place+2,_url.length)			
 		$("#uid").val(uid)
 		$("#token").val(token)
-		//alert(_url)
-		$.ajax({
-			url:"http://group_shop.tactshan.com/center",
-			data:{token:token,uid:uid},
-			method:'POST',
-			dataType:'json',
-			success:function(data){
-				//alert(data.msg)
-				$("#name").text(data.msg.u_name)
-			}
-		})
+		
 		
 		function url(){
 // 			var id=$("#uid").val()
@@ -142,17 +124,35 @@
 				}
 			});
 		}
-		$(document).on('click','#user',function(){
-			var uid=$("#uid").val(uid)
-			var token=$("#token").val(token)
-// 			var url='./pcenter.html?uid='+uid+'&token='+token
-// 			location.href=url;				
-		})	
-		$(document).on('click','.collection',function(){
-			var uid=$("#uid").val(uid)
-			var token=$("#token").val(token)
-// 			var url='./collenct.html?uid='+uid+'&token='+token
-// 			location.href=url;				
-		})
 	})
+		mui('body').on('tap','#user',function(){
+			var uid=$("#uid").val()
+			var token=$("#token").val()	
+			var _h3='';
+			mui.ajax('http://group_shop.tactshan.com/center',{  
+				data:{
+					uid:uid,    
+					token:token, 
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型  
+				timeout:10000,//超时时间设置为10秒；
+				headers:{'Content-Type':'application/x-www-form-urlencoded'},	              
+				success:function(data){    
+// 					_h3+="<h3>"+'用户id:'+data.msg.uid+"</h3>"+
+// 							"<h3>"+'用户名:'+data.msg.u_name+"</h3>"+
+// 							"<h3>"+'年龄:'+data.msg.u_age+"</h3>"+
+// 							"<h3>"+'邮箱:'+data.msg.u_email+"</h3>"
+					_h3+="<ul class='mui-table-view'>"+
+						"<li class='mui-table-view-cell'>"+'用户id:'+data.msg.uid+"</li>"+
+						"<li class='mui-table-view-cell'>"+'用户名:'+data.msg.u_name+"</li>"+
+						"<li class='mui-table-view-cell'>"+'年龄:'+data.msg.u_age+"</li>"+
+						"<li class='mui-table-view-cell'>"+'邮箱:'+data.msg.u_email+"</li>"+
+						"</ul>"
+						$('#user_content').html(_h3)      
+							
+				}
+			});	
+		})
+			
 </script>
