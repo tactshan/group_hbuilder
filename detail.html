@@ -40,7 +40,7 @@
 				<td><button onclick="addCart()" id="addcart">加入购物车</button></td>
 			</tr>
 			<tr>
-				<td><button>进入购物车</button></td>
+				<td><button onclick="shoppingCart()">进入购物车</button></td>
 				<td><button>进入订单列表</button></td>
 			</tr>
 		</table>
@@ -50,6 +50,19 @@
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript">
+	function shoppingCart(){
+		var uid = $("#uid").val();
+		var token= $("#token").val();
+		if(uid=='' && token==''){
+			alert('您还没有登录，请先登录')
+			location.href="./login.html"
+		}else{
+			var url='./cart.html?uid='+uid+'&token='+token
+			location.href=url;
+		}
+	}
+	
+	
 	$(function(){
 		_url=window.location.href
 		var goods_id_place=_url.lastIndexOf("_id=");
@@ -83,6 +96,7 @@
 			}
 		});
 	})
+	
 	function addCart(){
 		var buy_num = $("#buy_num").val()
 		var goods_id= $("#goods_id").val();
@@ -117,11 +131,16 @@
 			}
 		});
 	}
+	
 	function give_like(){
 		var goods_id= $("#goods_id").val();
-		mui.ajax('http://group_shop.tactshan.com//give_a_like',{
+		var uid = $("#uid").val();
+		var token= $("#token").val();
+		mui.ajax('http://group_shop.tactshan.com/give_a_like',{
 			data:{
-				goods_id:goods_id
+				goods_id:goods_id,
+				uid:uid,
+				token:token,
 			},
 			dataType:'json',//服务器返回json格式数据
 			type:'post',//HTTP请求类型
@@ -134,9 +153,11 @@
 			}
 		});
 	}
+	
 	$(document).on('click','#give_a_like',function(){
 		var _a = $(this).css('background-color','#28a4c9')
 	})
+	
 	$(document).on('click','#collect',function(){
 		var _a = $("#collect").css('background-color','#28a4c9')
 	})
