@@ -83,12 +83,25 @@
 								"<td>"+value.goods_price+"</td>"+
 								"<td>"+value.buy_num+"</td>"+
 								"<td>"+value.total_price+"</td>"+
-								"<td>"+"<input type='button' value='删除' class='cartdel' cart_id='"+value.cart_id+"'>"+"</td>"+								
+								"<td>"+"<input type='button' value='删除' class='cartdel' cart_id='"+value.id+"'>"+"</td>"+								
 							"</tr>";
 					})
 					$('#box').html(_tr)
 				},
-			})				
+			})	
+			$(document).on("click",".cartdel",function(){
+				var cart_id=$(this).attr("cart_id")
+				$.ajax({
+					url:"http://group_shop.tactshan.com/cart/delcart",
+					dataType:"json",
+					data:{cart_id:cart_id},
+					method:'POST',
+					success:function(data){
+						alert(data.msg)
+						location.href='./cart.html?uid='+uid+'&token='+token
+					}
+				})
+			})
 			})		
 		function addorder(){			
 			var uid = $("#uid").val();
@@ -110,22 +123,5 @@
 				}
 			});
 		}
-		$(document).on("click",".cartdel",function(){
-					var cart_id=$(this).attr("cart_id")
-					alert(cart_id)
-					$(document).on("click",".orderdel",function(){
-						var cart_id=$(this).attr("order_id")
-						alert(order_id)
-						$.ajax({
-							url:"http://group_shop.tactshan.com/cart/delcart",
-							data:{cart_id:cart_id},
-							dataType:"json",
-							method:'POST',
-							success:function(data){
-								alert(data.msg)
-								
-							}
-						})
-					})
-				})
+		
 </script>
