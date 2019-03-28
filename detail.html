@@ -19,6 +19,7 @@
 			<input type="hidden" id="goods_id">
 			<input type="hidden" id="uid">
 			<input type="hidden" id="token">
+			<input type="hidden" id="goods_type">
 			<tr>
 				<td>商品名称：</td>
 				<td id="goods_name"></td>
@@ -40,7 +41,12 @@
 				<td id="like_num"></td>
 			</tr>
 			<tr>
+<<<<<<< HEAD
 				<td><button onclick="like()">点赞</button></td>
+=======
+				<td><button onclick="give_like()" id="give_a_like" style="background-color:white;">点赞</button>&nbsp;
+				<button style="background-color: white;" id="collect" onclick="collect()" type="1">收藏</button></td>
+>>>>>>> wei
 				<td><button onclick="addCart()" id="addcart">加入购物车</button></td>
 			</tr>
 		</table>
@@ -65,6 +71,7 @@
 		$("#uid").val(uid)
 		$("#token").val(token)
 		
+		
 	
 		mui.ajax('http://group_shop.tactshan.com/group_shop/goods_detail',{
 			data:{
@@ -79,10 +86,23 @@
 				var goods_name = $("#goods_name").html(data.goods_name)
 				var goods_price = $("#goods_price").html(data.goods_price)
 				var goods_num = $("#goods_num").html(data.goods_num)
+<<<<<<< HEAD
 				var access=$("#access").html(data.access_num);
 				var like_num=$("#like_num").html(data.like_num);
+=======
+				var access=$("#access").html(data.access_num);
+				var goods_type=$("#goods_type").val(data.goods_type);
+>>>>>>> wei
 			}
 		});
+		var goods_type_num = $("#goods_type").val();
+		if(goods_type_num==1){
+			$("#collect").css('background-color',' #A94442')
+			$("#collect").text("已收藏")
+		}else{
+			$("#collect").css('background-color','white')
+			$("#collect").text("收藏")
+		}
 	})
 	function addCart(){
 		var buy_num = $("#buy_num").val()
@@ -116,9 +136,65 @@
 			}
 		});
 	}
+<<<<<<< HEAD
 	function like(){
 		var goods_id= $("#goods_id").val();
 		mui.ajax('http://group_shop.tactshan.com//give_a_like',{
+=======
+	
+	function give_like(){
+		var goods_id= $("#goods_id").val();
+		var uid = $("#uid").val();
+		var token= $("#token").val();
+		var type=$("#give_a_like").attr("type");
+		mui.ajax('http://group_shop.tactshan.com/give_a_like',{
+			data:{
+				goods_id:goods_id,
+				uid:uid,
+				token:token,
+			},
+			dataType:'json',//服务器返回json格式数据
+			type:'post',//HTTP请求类型
+			timeout:10000,//超时时间设置为10秒；
+			success:function(data){
+				alert(data.msg)
+				if(data.code==40001){
+					location.href="./login.html"
+				}else if(data.code==0){
+					if(type==1){
+						$("#give_a_like").css('background-color',' #A94442')
+						$("#give_a_like").attr("type","2");
+						$("#give_a_like").text("已赞")
+					}
+				}else if(data.code==50060){
+					$("#give_a_like").css('background-color',' #A94442')
+					$("#give_a_like").text("已赞")
+				}
+				
+			},
+			error:function(xhr,type,errorThrown){
+				alert(0)
+			}
+		});
+	}
+	
+	
+	
+
+	function collect(){
+		var goods_id= $("#goods_id").val();
+		var uid = $("#uid").val();
+		var token= $("#token").val();
+		var goods_type_num = $("#goods_type").val();
+		if(goods_type_num==0){
+			$("#collect").css('background-color',' #A94442')
+			$("#collect").text("已收藏")
+		}else{
+			$("#collect").css('background-color','white')
+			$("#collect").text("收藏")
+		}
+		mui.ajax('http://group_shop.tactshan.com/collect',{
+>>>>>>> wei
 			data:{
 				goods_id:goods_id
 			},
