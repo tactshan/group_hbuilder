@@ -23,17 +23,9 @@
 				<ul class="mui-table-view">
 				<!--个人信息-->
 				<li class="mui-table-view-cell mui-collapse">
-						<a class="mui-navigate-right" href="#">个人信息</a>
+						<a class="mui-navigate-right" href="#" id="aa">个人信息</a>
 						<div class="mui-collapse-content">
-							<h1>h1. Heading</h1>
-							<h2>h2. Heading</h2>
-							<h3>h3. Heading</h3>
-							<h4>h4. Heading</h4>
-							<h5>h5. Heading</h5>
-							<h6>h6. Heading</h6>
-							<p>
-								p. 目前最接近原生App效果的框架。
-							</p>
+							
 						</div>
 					</li>
 				<!--End个人信息-->
@@ -110,17 +102,6 @@
 		var token=_url.substring(token_place+2,_url.length)			
 		$("#uid").val(uid)
 		$("#token").val(token)
-		//alert(_url)
-		$.ajax({
-			url:"http://group_shop.tactshan.com/center",
-			data:{token:token,uid:uid},
-			method:'POST',
-			dataType:'json',
-			success:function(data){
-				//alert(data.msg)
-				$("#name").text(data.msg.u_name)
-			}
-		})
 		
 		function url(){
 // 			var id=$("#uid").val()
@@ -143,16 +124,8 @@
 			});
 		}
 		$(document).on('click','#user',function(){
-			var uid=$("#uid").val(uid)
-			var token=$("#token").val(token)
-// 			var url='./pcenter.html?uid='+uid+'&token='+token
-// 			location.href=url;				
+			
 		})	
-		$(document).on('click','.collection',function(){
-			var uid=$("#uid").val(uid)
-			var token=$("#token").val(token)
-// 			var url='./collenct.html?uid='+uid+'&token='+token
-// 			location.href=url;				
-		})
+
 	})
 </script>
