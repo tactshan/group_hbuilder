@@ -20,7 +20,7 @@
 		</header>
 	<div class="mui-content">
 			<div class="mui-card">
-				<ul class="mui-table-view">
+				<ul class="mui-table-view" >
 				<!--个人信息-->
 				<li class="mui-table-view-cell mui-collapse" id="user">
 						<a class="mui-navigate-right" href="#" id="aa">个人信息</a>
@@ -31,52 +31,28 @@
 				<!--End个人信息-->
 				
 				<!--我的订单-->
-				<li class="mui-table-view-cell mui-collapse">
+				<li class="mui-table-view-cell mui-collapse like" type="order" >
 					<a class="mui-navigate-right" href="#">我的订单</a>
-					<div class="mui-collapse-content">
-						<h1>h1. Heading</h1>
-						<h2>h2. Heading</h2>
-						<h3>h3. Heading</h3>
-						<h4>h4. Heading</h4>
-						<h5>h5. Heading</h5>
-						<h6>h6. Heading</h6>
-						<p>
-							p. 目前最接近原生App效果的框架。
-						</p>
+					<div class="mui-collapse-content" id="order">
+						
 					</div>
 				</li>
 				<!--End我的订单-->
 				 
 				<!--收藏夹-->
-				<li class="mui-table-view-cell mui-collapse">
+				<li class="mui-table-view-cell mui-collapse like" type="collection" >
 					<a class="mui-navigate-right" href="#">收藏夹</a>
-					<div class="mui-collapse-content">
-						<h1>h1. Heading</h1>
-						<h2>h2. Heading</h2>
-						<h3>h3. Heading</h3>
-						<h4>h4. Heading</h4>
-						<h5>h5. Heading</h5>
-						<h6>h6. Heading</h6>
-						<p>
-							p. 目前最接近原生App效果的框架。
-						</p>
+					<div class="mui-collapse-content" id="collection">
+						
 					</div>
 				</li>
 				<!--End收藏夹-->
 				
 				<!--点赞信息-->
-				<li class="mui-table-view-cell mui-collapse">
+				<li class="mui-table-view-cell mui-collapse like" type="like" >
 					<a class="mui-navigate-right" href="#">点赞信息</a>
-					<div class="mui-collapse-content">
-						<h1>h1. Heading</h1>
-						<h2>h2. Heading</h2>
-						<h3>h3. Heading</h3>
-						<h4>h4. Heading</h4>
-						<h5>h5. Heading</h5>
-						<h6>h6. Heading</h6>
-						<p>
-							p. 目前最接近原生App效果的框架。
-						</p>
+					<div class="mui-collapse-content" id="like">
+						
 					</div>
 				</li>
 				<!--End点赞信息-->						
@@ -102,28 +78,6 @@
 		var token=_url.substring(token_place+2,_url.length)			
 		$("#uid").val(uid)
 		$("#token").val(token)
-		
-		
-		function url(){
-// 			var id=$("#uid").val()
-// 			var token=$("#token").val()	
-			mui.ajax('http://group_shop.tactshan.com/effect',{
-				data:{
-					id:id,
-					type:type,
-				},
-				dataType:'json',//服务器返回json格式数据
-				type:'post',//HTTP请求类型
-				timeout:10000,//超时时间设置为10秒；
-				success:function(msg){
-					alert(msg.msg)
-					if(msg.code==1){
-						var url='./orderlist.html?uid='+uid+'&token='+token	
-						location.href=url;
-					}
-				}
-			});
-		}
 	})
 		mui('body').on('tap','#user',function(){
 			var uid=$("#uid").val()
@@ -154,5 +108,53 @@
 				}
 			});	
 		})
-			
+		
+		mui('body').on('tap','.like',function(){	
+			var _this=$(this);
+			var type=_this.attr('type');
+			var uid=$("#uid").val()
+			var _h3='';
+			mui.ajax('http://group_shop.tactshan.com/effect',{
+				data:{
+					uid:uid,
+					type:type,
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){
+					 //alert(data.msg)    
+					if(type=='order'){    
+						$.each(data.msg,function(i,value){	
+							_h3+="<ul class='mui-table-view' style='border:solid 1px  #C0A16B ;'>"+
+								"<li class='mui-table-view-cell'>"+'订单号:'+value.order_num+"</li>"+
+								"<li class='mui-table-view-cell'>"+'总价:'+value.total_amont+"</li>"+
+								"<li class='mui-table-view-cell'>"+'时间:'+value.c_time+"</li>"+
+								"<li class='mui-table-view-cell'>"+'状态:'+value.order_status+"</li>"+
+								"</ul>"+
+								"<br>"
+						})
+							$('#order').html(_h3)         
+					}else if(type=="collection"){
+						$.each(data.msg,function(i,value){	
+							_h3+="<ul class='mui-table-view'  style='border:solid 1px  #C0A16B ;'>"+
+								"<li class='mui-table-view-cell'>"+'商品名称:'+value.goods_name+"</li>"+
+								"<li class='mui-table-view-cell'>"+'商品价格:'+value.goods_price+"</li>"+
+								"</ul>"+
+								"<br>"
+						})
+							$('#collection').html(_h3)      
+					}else{
+						$.each(data.msg,function(i,value){
+							_h3+="<ul class='mui-table-view'  style='border:solid 1px  #C0A16B ;'>"+
+							"<li class='mui-table-view-cell'>"+'商品名称:'+value.goods_name+"</li>"+
+							"<li class='mui-table-view-cell'>"+'商品价格:'+value.goods_price+"</li>"+
+							"</ul>"+
+							"<br>"
+						})
+							$('#like').html(_h3)      
+					}   
+				}
+			});
+		})
 </script>
