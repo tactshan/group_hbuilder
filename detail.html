@@ -41,7 +41,7 @@
 			</tr>
 			<tr>
 				<td><button onclick="shoppingCart()">进入购物车</button></td>
-				<td><button>进入订单列表</button></td>
+				<td><button onclick="orderlist()">进入订单列表</button></td>
 			</tr>
 		</table>
 	</body>
@@ -131,7 +131,21 @@
 			}
 		});
 	}
+<<<<<<< HEAD
 	
+=======
+	function orderlist(){
+		var uid = $("#uid").val();
+		var token= $("#token").val();
+		if(uid==''|token==''){
+			alert('你还未登录,请登录')
+			location.href="./login.html"
+		}else{
+			var url='./orderlist.html?uid='+uid+'&token='+token
+			location.href=url;	
+		}		
+	}
+>>>>>>> wangshan
 	function give_like(){
 		var goods_id= $("#goods_id").val();
 		var uid = $("#uid").val();
