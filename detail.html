@@ -67,7 +67,6 @@
 		$("#uid").val(uid)
 		$("#token").val(token)
 		
-		
 	
 		mui.ajax('http://group_shop.tactshan.com/group_shop/goods_detail',{
 			data:{
@@ -84,17 +83,19 @@
 				var goods_num = $("#goods_num").html(data.goods_num)
 				var access=$("#access").html(data.access_num);
 				var like_num=$("#like_num").html(data.like_num);
-				var goods_type=$("#goods_type").val(data.goods_type);
+				$("#goods_type").val(data.goods_type)
 			}
 		});
-		var goods_type_num = $("#goods_type").val();
-		if(goods_type_num==0){
+		if(goods_type_num==1){
 			$("#collect").css('background-color',' #A94442')
+			$("#collect").attr('g_type','0')
 			$("#collect").text("已收藏")
-		}else{
-			$("#collect").css('background-color','white')
-			$("#collect").text("收藏")
-		}
+ 		}
+//else{
+// 			$("#collect").css('background-color','white')
+// 			$("#collect").attr('g_type','1')
+// 			$("#collect").text("收藏")
+// 		}
 	})
 	function addCart(){
 		var buy_num = $("#buy_num").val()
@@ -150,7 +151,6 @@
 				}else if(data.code==0){
 					if(type==1){
 						$("#give_a_like").css('background-color',' #A94442')
-						$("#give_a_like").attr("type","2");
 						$("#give_a_like").text("已赞")
 					}
 				}else if(data.code==50060){
@@ -165,24 +165,23 @@
 		});
 	}
 	
-	
-	
-
 	function collect(){
 		var goods_id= $("#goods_id").val();
 		var uid = $("#uid").val();
 		var token= $("#token").val();
 		var goods_type_num = $("#goods_type").val();
+// 		alert(goods_type_num)
+// 		if(goods_type_num==0){
+// 			$("#collect").css('background-color',' #A94442')
+// 			$("#collect").attr('g_type','0')
+// 			$("#collect").text("已收藏")
+// 		}else{
+// 			$("#collect").css('background-color','white')
+// 			$("#collect").attr('g_type','1')
+// 			$("#collect").text("收藏")
+// 		}
 		var type=$("#collect").attr('g_type')
-		if(goods_type_num==0){
-			$("#collect").css('background-color',' #A94442')
-			$("#collect").attr('g_type','0')
-			$("#collect").text("已收藏")
-		}else{
-			$("#collect").css('background-color','white')
-			$("#collect").attr('g_type','1')
-			$("#collect").text("收藏")
-		}
+		//alert(type)
 		mui.ajax('http://group_shop.tactshan.com/collect',{
 			data:{
 				goods_id:goods_id,
@@ -195,7 +194,26 @@
 			timeout:10000,//超时时间设置为10秒；
 			success:function(data){
 				alert(data.msg)
-				
+				//alert(data.goods_type)
+				alert(goods_type_num)
+				if(data.code==40001){
+					location.href="./login.html"
+				}else if(data.code==0){
+					alert(goods_type_num)
+					if(goods_type_num==1){
+						$("#collect").css('background-color',' #A94442')
+						$("#collect").attr('g_type','0')
+						$("#collect").text("已收藏")
+					}else{
+						$("#collect").css('background-color','white')
+						$("#collect").attr('g_type','1')
+						$("#collect").text("收藏")
+					}
+// 					var _url = window.location.href;
+// 					alert(window.location.href)
+// 					location.href=_url
+// 					$("#collect").attr('g_type','1')
+				}
 			},
 			error:function(xhr,type,errorThrown){
 				alert(2)
