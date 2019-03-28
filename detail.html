@@ -36,8 +36,12 @@
 				<td id="access"></td>
 			</tr>
 			<tr>
-				<td><button onclick="like()">点赞</button></td>
+				<td><button onclick="give_like()" id="give_a_like" style="background-color: ;">点赞</button>&nbsp;<button style="background-color: ;" id="collect">收藏</button></td>
 				<td><button onclick="addCart()" id="addcart">加入购物车</button></td>
+			</tr>
+			<tr>
+				<td><button>进入购物车</button></td>
+				<td><button>进入订单列表</button></td>
 			</tr>
 		</table>
 	</body>
@@ -113,7 +117,7 @@
 			}
 		});
 	}
-	function like(){
+	function give_like(){
 		var goods_id= $("#goods_id").val();
 		mui.ajax('http://group_shop.tactshan.com//give_a_like',{
 			data:{
@@ -130,4 +134,10 @@
 			}
 		});
 	}
+	$(document).on('click','#give_a_like',function(){
+		var _a = $(this).css('background-color','#28a4c9')
+	})
+	$(document).on('click','#collect',function(){
+		var _a = $("#collect").css('background-color','#28a4c9')
+	})
 </script>
