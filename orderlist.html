@@ -14,19 +14,19 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title" align="center" >订单展示</h1>	
+			<h1 class="mui-title" align="center" >我的订单</h1>	
 					<input type="hidden" id="uid">
 					<input type="hidden" id="token">
 					<input type="hidden" id="order_id">
 		</header>
+		
 		<div class="mui-content">
+			</br>
 			<table class="table table-bordered" >  			
-		<!-- 	<tbody id="box"> 
-			
-			</tbody> -->
 			<div class="mui-collapse-content" id="box">
 				 
 			</div>
+			<button>继续购买</button>
 		</table>
 		</div>
 		
@@ -63,10 +63,10 @@
 								value.order_status='已取消'
 							}
 						_tr+="<ul class='mui-table-view' style='border:solid 1px  #C0A16B ;'>"+
-							"<li class='mui-table-view-cell'>"+'订单号:'+value.order_num+"</li>"+
-							"<li class='mui-table-view-cell'>"+'总价:'+value.total_amont+'￥'+"</li>"+
-							"<li class='mui-table-view-cell'>"+'时间:'+value.c_time+"</li>"+
-							"<li class='mui-table-view-cell'>"+'状态:'+"<span style='color:blue;'>"+value.order_status+"</span>"+"</li>"+
+							"<li class='mui-table-view-cell'>"+'订单号:'+'&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'+value.order_num+"</li>"+
+							"<li class='mui-table-view-cell'>"+'总&nbsp价:'+'&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'+value.total_amont+'￥'+"</li>"+
+							"<li class='mui-table-view-cell'>"+'时&nbsp间:'+'&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'+value.c_time+"</li>"+
+							"<li class='mui-table-view-cell'>"+'状态:'+"<span style='color:blue;'>"+'&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'+value.order_status+"</span>"+"</li>"+
 							"<li class='mui-table-view-cell'>"+
 							"<input type='button' value='订单详情' class='orderdetail' order_num='"+value.order_num+"'>"+
 							"<button type='button' class='mui-btn mui-btn-danger mui-btn-outlined' order_id='"+value.order_id+"'>"+'删除'+"<span class='mui-icon mui-icon-trash'>"+"</span>"+"</button>"+
