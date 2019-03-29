@@ -53,34 +53,29 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">个人中心列表</h1>
 		</header>
-	<div class="mui-content">
+		<div class="mui-content">
+			<div >
+				<!--个人信息-->
+				<div class="mui-table-view mui-table-view-striped" >
+				<li class="mui-table-view-cell" id="user">
+					<div class="oa-contact-avatar mui-table-cell" >
+						<img src="http://img2.imgtn.bdimg.com/it/u=4285587126,3302189430&fm=26&gp=0.jpg" style="width: 60px;height: 60px;" />
+					</div>
+					
+					
+					<div class="oa-contact-content mui-table-cell" id='user_content'>
+						
+						
+					</div>
+					<div class="oa-contact-avatar mui-table-cell">
+						<button id="change_pwd">修改密码</button>
+					</div>
+				</li>
+				</div>
+				<!--End个人信息-->
+			</div>
 			<div class="mui-card">
 				<ul class="mui-table-view" >
-				<!--个人信息-->
-				<li class="mui-table-view-cell mui-collapse" id="user">
-						<a class="mui-navigate-right" href="#" id="aa">个人信息</a>
-						
-						<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
-							<li class="mui-table-view-cell">
-								<div class="mui-slider-cell">
-									<div class="oa-contact-cell mui-table">
-										<div class="oa-contact-avatar mui-table-cell">
-											<img src="http://img2.imgtn.bdimg.com/it/u=4285587126,3302189430&fm=26&gp=0.jpg" style="width: 50px;height: 50px;" />
-										</div>
-										<div class="oa-contact-content mui-table-cell" id='user_content'>
-											
-											
-										</div>
-										<div class="oa-contact-avatar mui-table-cell">
-											<button onclick="change_pwd()" id="change_pwd">修改密码</button>
-										</div>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</li>
-				<!--End个人信息-->
-				
 					<!--我的好友-->
 
 						<li class="mui-table-view-cell mui-collapse like" type="friend" >
@@ -162,19 +157,8 @@
 		var token=_url.substring(token_place+2,_url.length)			
 		$("#uid").val(uid)
 		$("#token").val(token)
-	})
-	$(document).on('click','#change_pwd',function(){
-		var uid=$("#uid").val()
-		var token=$("#token").val()	
-		var url='./change_pwd.html?uid='+uid+'&token='+token
-		location.href=url;
-	})
-	
-		mui('body').on('tap','#user',function(){
-			var uid=$("#uid").val()
-			var token=$("#token").val()	
-			var _h3='';
-			mui.ajax('http://group_shop.tactshan.com/center',{  
+		var _h3='';
+		mui.ajax('http://group_shop.tactshan.com/center',{  
 				data:{
 					uid:uid,    
 					token:token, 
@@ -193,8 +177,13 @@
 							
 				}
 			});	
-		}) 		
-		
+	})
+	$(document).on('click','#change_pwd',function(){
+		var uid=$("#uid").val()
+		var token=$("#token").val()	
+		var url='./change_pwd.html?uid='+uid+'&token='+token
+		location.href=url;
+	})
 		mui('body').on('tap','.like',function(){	
 			var _this=$(this);
 			var type=_this.attr('type');
