@@ -137,9 +137,11 @@
 				var pwd=$('#password').val();
 				if(account==''){
 					alert('账号不能为空')
+					return false;  
 				}
 				if(pwd==''){
 					alert('密码不能为空')
+					return false;
 				}
 			
 				mui.ajax('http://group_shop.tactshan.com/group_shop/login',{  
