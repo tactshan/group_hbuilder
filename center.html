@@ -249,8 +249,7 @@
 				dataType:'json',//服务器返回json格式数据
 				type:'post',//HTTP请求类型
 				timeout:10000,//超时时间设置为10秒；
-				success:function(data){
-					 alert(data.msg)    
+				success:function(data){   
 					if(type=='order'){    
 						$.each(data.msg,function(i,value){	
 							_h3+="<ul class='mui-table-view' style='border:solid 1px  #C0A16B ;'>"+
