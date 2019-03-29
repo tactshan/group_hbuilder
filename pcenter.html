@@ -79,7 +79,34 @@
 					<!--End个人信息-->
 					</ul>
 				</div>
-			</div>
+		
+		
+			<h3>共同好友</h3>
+						<div class="mui-card">
+							<ul class="mui-table-view" >
+							<!--个人信息-->
+							
+									
+									<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+										<li class="mui-table-view-cell">
+											<div class="mui-slider-cell">
+												<div class="oa-contact-cell mui-table">
+													<div class="oa-contact-avatar mui-table-cell">
+														<img src="http://img2.imgtn.bdimg.com/it/u=4285587126,3302189430&fm=26&gp=0.jpg" style="width: 50px;height: 50px;" />
+													</div>
+													<div class="oa-contact-content mui-table-cell" id='user_friend'>
+														
+															
+													</div> 
+												</div>
+											</div>
+										</li>
+									</ul>
+							<!--End个人信息-->
+							</ul>
+						</div>
+				
+		</div>
 			
 		
 			
@@ -130,6 +157,30 @@
 						"</ul>"
 						$('#user_content').html(_h3)     
 							
+				}  
+			});	
+			
+			var friend_uid=$("#user_id").val()
+			var login_uid=$("#uid").val()
+			//alert(login_uid)
+			mui.ajax('http://group_shop.tactshan.com/friend',{  
+				data:{
+					friend_uid:friend_uid,  
+					login_uid:login_uid,		
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型  
+				timeout:10000,//超时时间设置为10秒；
+				headers:{'Content-Type':'application/x-www-form-urlencoded'},	              
+				success:function(data){    
+					    $.each(data,function(i,value){	
+					    	_user="<ul class='mui-table-view' style='border:solid 1px  #C0A16B ;'>"+
+					    			"<li class='mui-table-view-cell'>"+'用户名称:'+'&nbsp;&nbsp;'+value.u_name+"</li>"+
+					    			"<li class='mui-table-view-cell'>"+'用户id:'+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+value.uid+"</li>"+
+					    			"<li class='mui-table-view-cell'>"+'邮&nbsp;&nbsp;箱:'+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+value.u_email+"</li>"+
+					    		"</ul>"
+					    		$('#user_friend').html(_user)     
+					    })   
 				}  
 			});	
 	
