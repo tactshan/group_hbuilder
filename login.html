@@ -5,7 +5,6 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 	<title></title>
 	<link rel="stylesheet" href="css/auth.css">
-	<script src="js/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 	<div class="lowin lowin-blue">
@@ -15,7 +14,6 @@
 		<div class="lowin-wrapper">
 			<div class="lowin-box lowin-login">
 				<div class="lowin-box-inner">
-					<form>
 						<p>Sign in to continue</p>
 						<div class="lowin-group">
 							<label>Account</label>
@@ -30,84 +28,62 @@
 						</button>
 
 						<div class="text-foot">
-							Don't have an account? <a id='reg' href="#" class="register-link">Register</a>
+							还没有账号 <a id='reg' href="#" class="register-link">Register</a>
 						</div>
-					</form>
 				</div>
 			</div>
-			
-		<footer class="lowin-footer">
-			Design By <a href="http://fb.me/itskodinger">@itskodinger</a>
-		</footer>
+		</div>
 	</div>
-
-	<script src="auth.js"></script>
-	<script>
-		Auth.init({
-			login_url: '#login',
-			forgot_url: '#forgot'
-		});
-	</script>
 </body>
-	
 </html>
 <script src="js/mui.min.js"></script>
-		<script src="js/jquery-3.2.1.min.js"></script>
-		<script src="js/mui.enterfocus.js"></script>
-		<script src="js/app.js"></script>
-		<script>
-			mui.init();   
-			mui('body').on('tap','#reg',function(){
-				var webview=mui.openWindow({
-					url:'reg.html',
-						
-				});   
-			})
-			mui('body').on('tap','#order',function(){
-				var webview=mui.openWindow({
-					url:'orderlist.html',
-						
-				});   
-			})
-			mui('body').on('tap','#login',function(){
-				var account=$('#account').val();
-				var pwd=$('#password').val();
-				if(account==''){
-					alert('账号不能为空')
-					return false;  
-				}
-				if(pwd==''){
-					alert('密码不能为空')
-					return false;
-				}
-			
-				mui.ajax('http://group_shop.tactshan.com/group_shop/login',{  
-					data:{
-						account:account,    
-						pwd:pwd, 
-					},
-					dataType:'json',//服务器返回json格式数据
-					type:'post',//HTTP请求类型  
-					timeout:10000,//超时时间设置为10秒；
-					headers:{'Content-Type':'application/x-www-form-urlencoded'},	              
-					success:function(data){    
-						if(data.code==0){
-								alert(data.msg) 
-								var webview=mui.openWindow({
-								url:'index.html',        
-								extras:{   
-									token:data.token,
-									uid:data.uid 
-								},
-							})
-						}else{  
-								mui.alert(data.msg,'提示信息','关闭');
-						}               
-					},       
-					error:function(xhr,type,errorThrown){
-						//异常处理；
-						console.log(type);	  
-					} 
-				});	
-			})
-		</script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/mui.enterfocus.js"></script>
+<script src="js/app.js"></script>
+<script>
+	mui.init();   
+	$(document).on('click','#reg',function(){
+		window.location.href="reg.html";
+	})
+	mui('body').on('tap','#login',function(){
+		var account=$('#account').val();
+		var pwd=$('#password').val();
+		if(account==''){
+			alert('账号不能为空')
+			return false;  
+		}
+		if(pwd==''){
+			alert('密码不能为空')
+			return false;
+		}
+	
+		mui.ajax('http://group_shop.tactshan.com/group_shop/login',{  
+			data:{
+				account:account,    
+				pwd:pwd, 
+			},
+			dataType:'json',//服务器返回json格式数据
+			type:'post',//HTTP请求类型  
+			timeout:10000,//超时时间设置为10秒；
+			headers:{'Content-Type':'application/x-www-form-urlencoded'},	              
+			success:function(data){    
+				if(data.code==0){
+						alert(data.msg) 
+						var webview=mui.openWindow({
+						url:'index.html',        
+						extras:{   
+							token:data.token,
+							uid:data.uid 
+						},
+					})
+				}else{  
+						mui.alert(data.msg,'提示信息','关闭');
+				}               
+			},       
+			error:function(xhr,type,errorThrown){
+				//异常处理；
+				console.log(type);	  
+			} 
+		});	
+	})
+</script>
