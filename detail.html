@@ -135,48 +135,46 @@
 			type:'post',//HTTP请求类型
 			timeout:10000,//超时时间设置为10秒；
 			success:function(data){
-				alert(data)
-				//alert(data.access_user[0].uid)
-// 				var goods_name = $("#goods_name").html(data.goods_name)
-// 				var goods_price = $("#goods_price").html(data.goods_price)
-// 				var goods_num = $("#goods_num").html(data.goods_num)
-// 				var access=$("#access").html(data.access_num);
-// 				var like_num=$("#like_num").html(data.like_num);
-// 				if(data.goods_type==1){
-// 					$("#collect").css('background-color',' #A94442')
-// 					$("#collect").attr('g_type','1')
-// 					$("#collect").text("已收藏")
-// 				}else{
-// 					$("#collect").css('background-color','white')
-// 					$("#collect").attr('g_type','0')
-// 					$("#collect").text("收藏")
-// 				}
-// 				if(data.like_type==1){
-// 					$("#give_a_like").css('background-color','  #31B0D5')
-// 					//$("#give_a_like").text("已赞")
-// 				}else{
-// 					$("#give_a_like").css('background-color','white')
-// 					//$("#give_a_like").text("点赞")
-// 				}
-// 				
-// 				
-// 				
-//  				$.each(data.access_user,function(i,value){
-// 	
-// // 					_user+="<img src='http://img2.imgtn.bdimg.com/it/u=4285587126,3302189430&fm=26&gp=0.jpg' style='width: 50px;height: 50px;' />";
-// 				_h3+="<div class='oa-contact-avatar mui-table-cell' >"+
-// 					"<img src='http://img2.imgtn.bdimg.com/it/u=4285587126,3302189430&fm=26&gp=0.jpg' user_id='"+value.uid+"' style='width: 50px;height: 50px;' class='user_content'/>"+
-// 					"</div>"+
-// 					"<div class='oa-contact-content mui-table-cell' >"+
-// 					"<div class='mui-clearfix'>"+
-// 					"<h4 class='oa-contact-name'>"+value.u_name+"</h4>"+
-// 					"<span class='oa-contact-position mui-h6'>"+'ID:'+value.uid+"</span>"+
-// 					"</div>"+
-// 					"<p class='oa-contact-email mui-h6'>"+value.u_email+"</p>"+    
-// 					"</div>"+
-// 					"<br>";
-// 				$('#user_c').html(_h3)    
-//  			})
+				var goods_name = $("#goods_name").html(data.goods_name)
+				var goods_price = $("#goods_price").html(data.goods_price)
+				var goods_num = $("#goods_num").html(data.goods_num)
+				var access=$("#access").html(data.access_num);
+				var like_num=$("#like_num").html(data.like_num);
+				if(data.goods_type==1){
+					$("#collect").css('background-color',' #A94442')
+					$("#collect").attr('g_type','1')
+					$("#collect").text("已收藏")
+				}else{
+					$("#collect").css('background-color','white')
+					$("#collect").attr('g_type','0')
+					$("#collect").text("收藏")
+				}
+				if(data.like_type==1){
+					$("#give_a_like").css('background-color','  #31B0D5')
+					//$("#give_a_like").text("已赞")
+				}else{
+					$("#give_a_like").css('background-color','white')
+					//$("#give_a_like").text("点赞")
+				}
+				
+				
+				
+ 				$.each(data.access_user,function(i,value){
+	
+// 					_user+="<img src='http://img2.imgtn.bdimg.com/it/u=4285587126,3302189430&fm=26&gp=0.jpg' style='width: 50px;height: 50px;' />";
+				_h3+="<div class='oa-contact-avatar mui-table-cell' >"+
+					"<img src='http://img2.imgtn.bdimg.com/it/u=4285587126,3302189430&fm=26&gp=0.jpg' user_id='"+value.uid+"' style='width: 50px;height: 50px;' class='user_content'/>"+
+					"</div>"+
+					"<div class='oa-contact-content mui-table-cell' >"+
+					"<div class='mui-clearfix'>"+
+					"<h4 class='oa-contact-name'>"+value.u_name+"</h4>"+
+					"<span class='oa-contact-position mui-h6'>"+'ID:'+value.uid+"</span>"+
+					"</div>"+
+					"<p class='oa-contact-email mui-h6'>"+value.u_email+"</p>"+    
+					"</div>"+
+					"<br>";
+				$('#user_c').html(_h3)    
+ 			})
 			}
 		});
 		
@@ -290,4 +288,4 @@
   		var url='pcenter.html?user_id='+user_id
   		location.href=url;	
 	})					
-</script>
+</script>  
