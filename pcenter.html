@@ -47,21 +47,39 @@
 	</head>
 	<body>
 		<input type="hidden" id="user_id">
+		<input type="hidden" id="uid">
+		<input type="hidden" id="token">
 		<!-- <h4 align="center">个人中心列表</h4> -->
 		<header id="header" class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">个人中心列表</h1>
 		</header>
 		<div class="mui-content">
-			<div class="oa-contact-avatar mui-table-cell">
-				<img src="http://img2.imgtn.bdimg.com/it/u=4285587126,3302189430&fm=26&gp=0.jpg" style="width: 50px;height: 50px;" />
-				<a id="icon-plus"><span class="mui-icon mui-icon-plus"></span></a>
-			</div>
-			<div class="oa-contact-content mui-table-cell" id='user_content'>
+				<div class="mui-card">
+					<ul class="mui-table-view" >
+					<!--个人信息-->
+					
+							
+							<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+								<li class="mui-table-view-cell">
+									<div class="mui-slider-cell">
+										<div class="oa-contact-cell mui-table">
+											<div class="oa-contact-avatar mui-table-cell">
+												<img src="http://img2.imgtn.bdimg.com/it/u=4285587126,3302189430&fm=26&gp=0.jpg" style="width: 50px;height: 50px;" />
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="icon-plus"><span class="mui-icon mui-icon-plus"></span></a>
+											</div>
+											<div class="oa-contact-content mui-table-cell" id='user_content'>
 												
 												  
-			</div>  
-		</div>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+					<!--End个人信息-->
+					</ul>
+				</div>
+			</div>
 			
 		
 			
@@ -75,21 +93,30 @@
 <script>
 	$(function(){
 		var _url=window.location.href
-		var user_id=_url.lastIndexOf("=");
-		var uid=_url.substring(user_id+1)
+		var uid_place=_url.lastIndexOf("uid=");
+		var uid_last_place=_url.lastIndexOf("&u")
+		var uid=_url.substring(uid_place+4,uid_last_place)
+		var use_id=_url.lastIndexOf("d=")
+		var use_id_place=_url.lastIndexOf("&t")
+		var user_id=_url.substring(use_id+2,use_id_place)
 		
- 		$("#user_id").val(uid)
+		var token_place=_url.lastIndexOf("n=")
+		var token=_url.substring(token_place+2,_url.length)
+ 		$("#user_id").val(user_id)
+		$("#uid").val(uid)
+		$("#token").val(token)
 		
 		
 		
 		
 		
-		mui('body').on('tap','#user',function(){
 			var user_id=$("#user_id").val()
-			
+			var uid=$("#uid").val()
+			var token=$("#token").val()
 			mui.ajax('http://group_shop.tactshan.com/usercenter',{  
 				data:{
 					user_id:user_id,    
+					
 				},
 				dataType:'json',//服务器返回json格式数据
 				type:'post',//HTTP请求类型  
@@ -97,37 +124,44 @@
 				headers:{'Content-Type':'application/x-www-form-urlencoded'},	              
 				success:function(data){    
 					_h3="<ul class='mui-table-view' style='border:solid 1px  #C0A16B ;'>"+
-							"<li class='mui-table-view-cell'>"+'用户名称:'+data.msg.u_name+"</li>"+
-							"<li class='mui-table-view-cell'>"+'用户id:'+data.msg.uid+"</li>"+
-							"<li class='mui-table-view-cell'>"+'邮箱:'+data.msg.u_email+"</li>"+
+							"<li class='mui-table-view-cell'>"+'用户名称:'+'&nbsp;&nbsp;'+data.msg.u_name+"</li>"+
+							"<li class='mui-table-view-cell'>"+'用户id:'+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+data.msg.uid+"</li>"+
+							"<li class='mui-table-view-cell'>"+'邮&nbsp;&nbsp;箱:'+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+data.msg.u_email+"</li>"+
 						"</ul>"
 						$('#user_content').html(_h3)     
 							
 				}  
 			});	
-		})
-		
-		
-		
-		mui('body').on('tap','#icon-plus',function(){
-			mui.ajax('http://group_shop.tactshan.com/addfriend',{  
-				data:{
-					user_id:user_id,    
-				},
-				dataType:'json',//服务器返回json格式数据
-				type:'post',//HTTP请求类型  
-				timeout:10000,//超时时间设置为10秒；
-				headers:{'Content-Type':'application/x-www-form-urlencoded'},	              
-				success:function(data){   
-					alert(data.msg);
-// 					if(data.code==1){
-// 						alert('添加成功')
-// 					}		
-				}  
-			});	
-		})
-	})
 	
+		
+		
+		
+		
+		})
+	
+	mui('body').on('tap','#icon-plus',function(){
+		var user_id=$("#user_id").val()
+		var uid=$("#uid").val()
+		var token=$("#token").val()
+		mui.ajax('http://group_shop.tactshan.com/addfriend',{  
+			data:{
+				user_id:user_id,  
+				uid:uid,
+				token:token
+			},
+			dataType:'json',//服务器返回json格式数据
+			type:'post',//HTTP请求类型  
+			timeout:10000,//超时时间设置为10秒；
+			headers:{'Content-Type':'application/x-www-form-urlencoded'},	              
+			success:function(data){   
+				//alert(data.code)
+				 if(data.code==1){
+					alert('添加成功');
+					return false;
+				}		 
+			}  
+		});	
+	})
 
 	
 </script>
