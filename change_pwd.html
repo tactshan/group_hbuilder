@@ -55,10 +55,6 @@
 <script src="js/mui.js"></script>
 <script src="js/mui.min.js"></script>
 <script type="text/javascript">
-	$(function(){
-		var _url = window.location.href
-		alert(_url)
-	})
 	function change_pwd(){
 		_url=window.location.href
 		var uid_place=_url.lastIndexOf("uid=");
@@ -70,7 +66,7 @@
 		var new_pwd = $("#new_pwd").val();
 		var confirm_pwd = $("#confirm_pwd").val();
 		if(new_pwd==cofirm_pwd){
-			mui.ajax('',{
+			mui.ajax('http://group_shop.tactshan.com/changepwd',{
 				data:{
 					uid:uid,
 					token:token,
@@ -81,10 +77,10 @@
 				type:'post',//HTTP请求类型
 				timeout:10000,//超时时间设置为10秒；
 				success:function(data){
-					
+					alert(data.msg)
 				},
 				error:function(xhr,type,errorThrown){
-					
+					alert(1)
 				}
 			});
 		}
