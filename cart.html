@@ -124,9 +124,14 @@
 				type:'post',//HTTP请求类型
 				timeout:10000,//超时时间设置为10秒；
 				success:function(msg){
-					alert(msg.msg)
+					
 					if(msg.code==1){
+						alert("添加成功")
 						var url='./orderlist.html?uid='+uid+'&token='+token	
+						location.href=url;
+					}else if(msg.code==40010){
+						alert("购物车没有商品，请先添加商品")
+						var url='./detail.html?uid='+uid+'&token='+token	
 						location.href=url;
 					}
 				}

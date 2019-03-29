@@ -81,6 +81,46 @@
 					</li>
 				<!--End个人信息-->
 				
+				<!--我的好友-->
+				<!-- <li class="mui-table-view-cell mui-collapse like" type="friend">
+						<a class="mui-navigate-right" href="#" id="">我的好友</a>
+						
+						<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+							<li class="mui-table-view-cell">
+								<div class="mui-slider-cell">
+									<div class="oa-contact-cell mui-table">
+										<div class="oa-contact-avatar mui-table-cell">
+											<img src="http://img2.imgtn.bdimg.com/it/u=4285587126,3302189430&fm=26&gp=0.jpg" style="width: 50px;height: 50px;" />
+										</div>
+										<div class="oa-contact-content mui-table-cell" id='friend'>																					
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</li> -->
+				<!--End我的好友-->
+				
+					<!--我的好友-->
+					<li class="mui-table-view-cell mui-collapse like" type="friend" >
+						<a class="mui-navigate-right" href="#">我的好友</a>
+						<div class="mui-collapse-content" id="friend">
+							<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+								<li class="mui-table-view-cell">
+									<div class="mui-slider-cell">
+										<div class="oa-contact-cell mui-table">
+											<div class="oa-contact-avatar mui-table-cell">
+												<img src="http://img2.imgtn.bdimg.com/it/u=4285587126,3302189430&fm=26&gp=0.jpg" style="width: 50px;height: 50px;" />
+											</div>
+											<div class="oa-contact-content mui-table-cell" id='friend'>																					
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</li>								
+					<!--End我的好友-->
 				<!--我的订单-->
 				<li class="mui-table-view-cell mui-collapse like" type="order" >
 					<a class="mui-navigate-right" href="#">我的订单</a>
@@ -171,6 +211,31 @@
 			});	
 		})
 		
+// 		mui('body').on('tap','#friend',function(){
+// 			var uid=$("#uid").val()
+// 			var _friend='';
+// 			mui.ajax('http://group_shop.tactshan.com/center',{  
+// 				data:{
+// 					uid:uid,    
+// 					// token:token, 
+// 				},
+// 				dataType:'json',//服务器返回json格式数据
+// 				type:'post',//HTTP请求类型  
+// 				timeout:10000,//超时时间设置为10秒；
+// 				headers:{'Content-Type':'application/x-www-form-urlencoded'},	              
+// 				success:function(data){    
+// 					_friend+="<div class='mui-clearfix'>"+
+// 							"<h4 class='oa-contact-name'>"+data.msg.u_name+"</h4>"+
+// 							"<span class='oa-contact-position mui-h6'>"+'ID:'+data.msg.uid+"</span>"+
+// 							"</div>"+
+// 							"<p class='oa-contact-email mui-h6'>"+data.msg.u_email+"</p>"
+// 						$('#friend').html(_friend)     
+// 							
+// 				}
+// 			});	
+// 		})
+// 		
+		
 		mui('body').on('tap','.like',function(){	
 			var _this=$(this);
 			var type=_this.attr('type');
@@ -185,7 +250,7 @@
 				type:'post',//HTTP请求类型
 				timeout:10000,//超时时间设置为10秒；
 				success:function(data){
-					 //alert(data.msg)    
+					 alert(data.msg)    
 					if(type=='order'){    
 						$.each(data.msg,function(i,value){	
 							_h3+="<ul class='mui-table-view' style='border:solid 1px  #C0A16B ;'>"+
@@ -217,6 +282,16 @@
 								"<br>"
 						})  
 							$('#cart').html(_h3)   
+					}else if(type=="friend"){    
+						$.each(data.msg,function(i,value){	
+							_h3+="<ul class='mui-table-view'  style='border:solid 1px  #C0A16B ;'>"+
+								"<li class='mui-table-view-cell'>"+'用户名称:'+value.u_name+"</li>"+
+								"<li class='mui-table-view-cell'>"+'用户ID:'+value.msg.uid+"</li>"+
+								"<li class='mui-table-view-cell'>"+'用户邮箱:'+value.msg.email+"</li>"+
+								"</ul>"+
+								"<br>"
+						})  
+							$('#friend').html(_h3)   
 					}else{
 						$.each(data.msg,function(i,value){
 							_h3+="<ul class='mui-table-view'  style='border:solid 1px  #C0A16B ;'>"+
