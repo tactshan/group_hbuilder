@@ -11,10 +11,45 @@
 		<link rel="stylesheet" href="css/mui.min.css">
 		<!--App自定义的css-->
 		<link rel="stylesheet" type="text/css" href="css/app.css" />
-		<style>
-			
+			<style>
+				html,body {
+					background-color: #efeff4;
+				}
+				.title{
+					margin: 20px 15px 10px;
+					color: #6d6d72;
+					font-size: 15px;
+				}
+				.oa-contact-cell.mui-table .mui-table-cell {
+					padding: 11px 0;
+					vertical-align: middle;
+				}
+				
+				.oa-contact-cell {
+					position: relative;
+					margin: -11px 0;
+				}
+				
+				.oa-contact-avatar {
+					width: 75px;
+				}
+				.oa-contact-avatar img {
+					border-radius: 50%;
+				}
+				.oa-contact-content {
+					width: 100%;
+				}
+				.oa-contact-name {
+					margin-right: 20px;
+				}
+				.oa-contact-name, oa-contact-position {
+					float: left;
+				}
+				.oa-contact-avatar mui-table-cell{
+					margin: 20px 15px 10px;
+				}
+			</style>
 		
-		</style>
 	</head>
 
 	<body>
@@ -67,6 +102,9 @@
 			</table>
 			</div>
 			</div>
+			<div id="user_c">
+				
+			</div>
 		</div>  
 	</body>
 
@@ -84,43 +122,61 @@
 		var uid=_url.substring(uid_place+4,uid_last_place)
 		var token_place=_url.lastIndexOf("n=")
 		var token=_url.substring(token_place+2,_url.length)
-		
 		$("#goods_id").val(goods_id)
 		$("#uid").val(uid)
 		$("#token").val(token)
 		
-	
+		var _h3='';
 		mui.ajax('http://group_shop.tactshan.com/group_shop/goods_detail',{
 			data:{
 				goods_id : goods_id,
-				uid : uid,
-				token : token 
 			},
 			dataType:'json',//服务器返回json格式数据
 			type:'post',//HTTP请求类型
 			timeout:10000,//超时时间设置为10秒；
 			success:function(data){
-				var goods_name = $("#goods_name").html(data.goods_name)
-				var goods_price = $("#goods_price").html(data.goods_price)
-				var goods_num = $("#goods_num").html(data.goods_num)
-				var access=$("#access").html(data.access_num);
-				var like_num=$("#like_num").html(data.like_num);
-				if(data.goods_type==1){
-					$("#collect").css('background-color',' #A94442')
-					$("#collect").attr('g_type','1')
-					$("#collect").text("已收藏")
-				}else{
-					$("#collect").css('background-color','white')
-					$("#collect").attr('g_type','0')
-					$("#collect").text("收藏")
-				}
-				if(data.like_type==1){
-					$("#give_a_like").css('background-color','  #31B0D5')
-					//$("#give_a_like").text("已赞")
-				}else{
-					$("#give_a_like").css('background-color','white')
-					//$("#give_a_like").text("点赞")
-				}
+				alert(data)
+				//alert(data.access_user[0].uid)
+// 				var goods_name = $("#goods_name").html(data.goods_name)
+// 				var goods_price = $("#goods_price").html(data.goods_price)
+// 				var goods_num = $("#goods_num").html(data.goods_num)
+// 				var access=$("#access").html(data.access_num);
+// 				var like_num=$("#like_num").html(data.like_num);
+// 				if(data.goods_type==1){
+// 					$("#collect").css('background-color',' #A94442')
+// 					$("#collect").attr('g_type','1')
+// 					$("#collect").text("已收藏")
+// 				}else{
+// 					$("#collect").css('background-color','white')
+// 					$("#collect").attr('g_type','0')
+// 					$("#collect").text("收藏")
+// 				}
+// 				if(data.like_type==1){
+// 					$("#give_a_like").css('background-color','  #31B0D5')
+// 					//$("#give_a_like").text("已赞")
+// 				}else{
+// 					$("#give_a_like").css('background-color','white')
+// 					//$("#give_a_like").text("点赞")
+// 				}
+// 				
+// 				
+// 				
+//  				$.each(data.access_user,function(i,value){
+// 	
+// // 					_user+="<img src='http://img2.imgtn.bdimg.com/it/u=4285587126,3302189430&fm=26&gp=0.jpg' style='width: 50px;height: 50px;' />";
+// 				_h3+="<div class='oa-contact-avatar mui-table-cell' >"+
+// 					"<img src='http://img2.imgtn.bdimg.com/it/u=4285587126,3302189430&fm=26&gp=0.jpg' user_id='"+value.uid+"' style='width: 50px;height: 50px;' class='user_content'/>"+
+// 					"</div>"+
+// 					"<div class='oa-contact-content mui-table-cell' >"+
+// 					"<div class='mui-clearfix'>"+
+// 					"<h4 class='oa-contact-name'>"+value.u_name+"</h4>"+
+// 					"<span class='oa-contact-position mui-h6'>"+'ID:'+value.uid+"</span>"+
+// 					"</div>"+
+// 					"<p class='oa-contact-email mui-h6'>"+value.u_email+"</p>"+    
+// 					"</div>"+
+// 					"<br>";
+// 				$('#user_c').html(_h3)    
+//  			})
 			}
 		});
 		
@@ -226,4 +282,12 @@
 			}
 		});
 	}
+	$(document).on('click','.user_content',function(){
+		
+		var user_id=$(this).attr('user_id');
+		
+
+  		var url='pcenter.html?user_id='+user_id
+  		location.href=url;	
+	})					
 </script>
