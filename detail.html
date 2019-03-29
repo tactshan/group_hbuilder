@@ -284,9 +284,9 @@
 	$(document).on('click','.user_content',function(){
 		
 		var user_id=$(this).attr('user_id');
-		
-
-  		var url='pcenter.html?user_id='+user_id
+		var uid=$("#uid").val()
+		var token=$("#token").val()
+  		var url='pcenter.html?uid='+uid+'&user_id='+user_id+'&token='+token
   		location.href=url;	
 	})					
 </script>  
