@@ -97,7 +97,7 @@
 													<div class="oa-contact-content mui-table-cell" id='user_friend'>
 														
 															
-													</div> 
+													</div>  
 												</div>
 											</div>
 										</li>
@@ -167,7 +167,7 @@
 			mui.ajax('http://group_shop.tactshan.com/friend',{  
 				data:{
 					friend_uid:friend_uid,  
-					login_uid:login_uid,		
+					login_uid:login_uid,	  	
 				},
 				dataType:'json',//服务器返回json格式数据
 				type:'post',//HTTP请求类型  
@@ -175,13 +175,14 @@
 				headers:{'Content-Type':'application/x-www-form-urlencoded'},	              
 				success:function(data){    
 					    $.each(data,function(i,value){	
-					    	_user="<ul class='mui-table-view' style='border:solid 1px  #C0A16B ;'>"+
+					    	_user+="<ul class='mui-table-view' style='border:solid 1px  #C0A16B ;'>"+
 					    			"<li class='mui-table-view-cell'>"+'用户名称:'+'&nbsp;&nbsp;'+value.u_name+"</li>"+
 					    			"<li class='mui-table-view-cell'>"+'用户id:'+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+value.uid+"</li>"+
 					    			"<li class='mui-table-view-cell'>"+'邮&nbsp;&nbsp;箱:'+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+value.u_email+"</li>"+
 					    		"</ul>"
-					    		$('#user_friend').html(_user)     
-					    })   
+					    		     
+					    })  
+							 $('#user_friend').html(_user)
 				}  
 			});	
 	
