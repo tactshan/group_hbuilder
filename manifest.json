@@ -37,7 +37,7 @@
         "launchwebview" : {
             "titleNView" : {
                 "backgroundcolor" : "#f7f7f7",
-                "titletext" : "首页",
+                "titletext" : "",
                 "titlecolor" : "#000000"
             }
         },
