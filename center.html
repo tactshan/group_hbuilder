@@ -71,6 +71,9 @@
 											
 											
 										</div>
+										<div class="oa-contact-avatar mui-table-cell">
+											<button onclick="change_pwd()" id="change_pwd">修改密码</button>
+										</div>
 									</div>
 								</div>
 							</li>
@@ -84,6 +87,7 @@
 					<div class="mui-collapse-content" id="order">
 						
 					</div>
+					
 				</li>
 				<!--End我的订单-->
 				 
@@ -135,6 +139,13 @@
 		$("#uid").val(uid)
 		$("#token").val(token)
 	})
+	$(document).on('click','#change_pwd',function(){
+		var uid=$("#uid").val()
+		var token=$("#token").val()	
+		var url='./change_pwd.html?uid='+uid+'&token='+token
+		location.href=url;
+	})
+	
 		mui('body').on('tap','#user',function(){
 			var uid=$("#uid").val()
 			var token=$("#token").val()	
