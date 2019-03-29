@@ -15,18 +15,17 @@
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title" align="center" >我的订单</h1>	
-					<input type="hidden" id="uid">
+		</header>
+		<input type="hidden" id="uid">
 					<input type="hidden" id="token">
 					<input type="hidden" id="order_id">
-		</header>
-		
 		<div class="mui-content">
 			</br>
 			<table class="table table-bordered" >  			
 			<div class="mui-collapse-content" id="box">
 				 
 			</div>
-			<button>继续购买</button>
+			<button type="button" class="mui-btn mui-btn-primary mui-btn-block" id='goods'>继续购买</button>
 		</table>
 		</div>
 		
@@ -100,6 +99,10 @@
 					var url='./orderdetail.html?uid='+uid+'&token='+token+'&order_num='+order_num
 					location.href=url;	
 					
+				})
+				//继续购买,返回商品首页
+				$('#goods').click(function(){
+					location.href='./goodslist.html'
 				})
 				})
 				
